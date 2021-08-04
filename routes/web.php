@@ -20,3 +20,26 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/compte', [App\Http\Controllers\UserController::class, 'index'])->name('compte');
+
+/*------------------------ MODIFICATION DES INFOS DU COMPTE  ---------------------------- */
+Route::get('/editaccount', [App\Http\Controllers\UserController::class, 'edit'])->name('editaccount');
+Route::post('/editaccount', [App\Http\Controllers\UserController::class, 'update'])->name('updateaccount');
+
+/*------------------------ MODIFICATION DU MOT DE PASSE------------------------------------- */
+Route::get('/editpassword', [App\Http\Controllers\UserController::class, 'editpassword'])->name('editpassword');
+Route::post('/editpassword', [App\Http\Controllers\UserController::class, 'updatepassword'])->name('updatepassword');
+
+/*------------------------ PUBLICATION ET MODIF DES POSTS -------------------------------------------------------- */
+Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index');
+Route::get('users/{user}', [App\Http\Controllers\UserController::class,'profil'])->name('profil');
+
+/*------------------------ PUBLICATION ET MODIF DES COMMENTAIRES -------------------------------------------------------- */
+Route::resource('/commentaires', App\Http\Controllers\CommentaireController::class)->except('index');
+
+/*------------------------ PUBLICATION DE LA RECHERCHE -------------------------------------------------------- */
+Route::get('/search', [App\Http\Controllers\PostController::class, 'search'])->name('search');
+
+/*--------------------------------------- UPLOAD IMAGES ---------------------------------------------- */
+Route::post('image-upload', [App\Http\Controllers\ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');

@@ -11,13 +11,29 @@ class CreateFollowersTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('followers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+    
+        public function up()
+        {
+            Schema::create('followers', function (Blueprint $table) {
+                $table->primary(['user_id', 'following_user_id']);
+                $table->foreignId('user_id');
+                $table->foreignId('following_user_id');
+                $table->timestamps();
+                $table->engine = 'InnoDB';
+    
+                $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+    
+                $table->foreign('following_user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            });
+            }
+
+    
 
     /**
      * Reverse the migrations.

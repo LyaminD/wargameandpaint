@@ -19,7 +19,6 @@ class CreateCommentairesTable extends Migration
             $table->text('content');
             $table->text('image')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->string('tags');
             $table->timestamps();
             $table->engine = 'InnoDB';
 

@@ -15,8 +15,12 @@ class CreateFactionsTable extends Migration
     {
         Schema::create('factions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('jeux_id');
             $table->string('image');
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
+            $table->foreign('jeux_id')->references('id')->on('jeux');
         });
     }
 
