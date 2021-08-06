@@ -46,7 +46,6 @@ class CommentaireController extends Controller
         $commentaire->post_id = $request->input('post_id');
         $commentaire->content = $request->input('content');
         $commentaire->image = $request->input('image');
-        $commentaire->tags = $request->input('tags');
         $commentaire->save();
 
         return redirect()->route('home')->with('message', 'Commentaire poster avec succès');
@@ -88,7 +87,6 @@ class CommentaireController extends Controller
 
         ]);
         $commentaire->content = $request->input('content');
-        $commentaire->tags = $request->input('tags');
         $commentaire->image = $request->input('image');
         $commentaire->save();
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class ImageUploadController extends Controller
 {
+    
     public function imageUpload()
 
     {
