@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all()->sortByDesc('created_at');
+        $posts->load('image');
         return view('home', ['posts' => $posts]);
     }
 }

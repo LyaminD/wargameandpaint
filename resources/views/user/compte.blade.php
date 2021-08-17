@@ -8,7 +8,7 @@
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 cover">
                 <div class="media align-items-end profile-head">
-                    <div class="profile mr-3"><img src="{{ asset("images/$user->imageprofil") }}" width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-outline-dark btn-sm btn-block">Changer la photo de profil</a></div>
+                    <div class="profile mr-3"><img src="{{ asset("images/profil/$user->imageprofil") }}" width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-outline-dark btn-sm btn-block">Changer la photo de profil</a></div>
 
                     <div class="media-body mb-5 text-dark">
                         <h4 class="mt-0 mb-0">{{ $user->pseudo}}</h4>

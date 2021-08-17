@@ -15,13 +15,14 @@
 
 
 <body>
-    <div id="loginBackground">
-
+    <div id="loginBackground" class="bg-dark text-center">
         <h1>Bienvenu sur Wargame & Paint ! ! !</h1>
+        <p>Wargame & Paint est un site de partage de photos sur l'univers de Games Workshop !</p>
+        <p>Partage tes réalisations avec la communauté !</p>
         <div class="container">
-            <div class="tribunal text-center my-3">
-                <img src="{{ asset("images/....png") }}" class="img-thumbnail">
-            </div>
+        <div class="tribunal text-center my-5">
+    <img src="{{ asset("images/wargame.png") }}">
+    </div>
         </div>
         <div class="container d-flex text-center">
             <div class="col text-center">

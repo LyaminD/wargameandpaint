@@ -5,7 +5,7 @@
 <form action="{{route('posts.update',$post)}}" method="post">
     @csrf
     @method('PUT')
-    <div class="tweets container my-5 justify-content-center">
+    <div class="posts container my-5 justify-content-center">
         <h3>Modifie ton post en dessous</h3>
         <div class="posts-input"> <input type="text" value="{{$post->content}}" name="content" class="form-control" placeholder="Post">
             <h3>Modifie ton Tags</h3>

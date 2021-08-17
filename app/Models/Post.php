@@ -10,8 +10,9 @@ class Post extends Model
 
     protected $fillable = [
         'content',
-        'image',
+        'image_id',
         'user_id',
+        'titre',
     ];  
 
     use HasFactory;
@@ -22,5 +23,9 @@ class Post extends Model
     public function commentaires()
     {
         return $this->hasMany(Commentaire::class);
+    }
+    public function image()
+    {
+        return $this->belongsTo(Image::class);
     }
 }

@@ -39,14 +39,15 @@ class PostController extends Controller
     {
         $request->validate([
             'content' => 'required', 'string', 'min:5', 'max:255',
+            'titre' => 'required', 'string', 'min:5', 'max:255',
         ]);
 
         $user = Auth::user();
-
         Post::create([
             'content' => $request->input('content'),
-            'image' => $request->input('image'),
+            'image_id' => session('lastInsertId'),
             'user_id' => $user->id,
+            'titre' => $request->input('titre'),
         ]);
 
         return redirect()->route('home')->with('message', 'Post poster avec succès');
@@ -85,10 +86,12 @@ class PostController extends Controller
     {
         $request->validate([
             'content' => 'required', 'string', 'min:5', 'max:255',
+            'titre' => 'required', 'string', 'min:5', 'max:255',
         ]);
 
         $post->content = $request->input('content');
         $post->image = $request->input('image');
+        $post->titre = $request->input('titre');
         $post->save();
 
         return redirect()->route('home')->with('message', 'Post modifié avec succès');

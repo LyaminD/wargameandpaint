@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class ImageUploadController extends Controller
@@ -23,8 +24,17 @@ class ImageUploadController extends Controller
 
         $imageName = time().'.'.$request->image->extension();  
         $request->image->move(public_path('images'), $imageName);
+        $this->store($imageName);
         return back()
             ->with('success','Image envoyée !')
             ->with('image',$imageName); 
+    }
+
+    public function store($imageName){
+        $id = Image::create([
+            'name' => $imageName,
+            'user_id' => auth()->user()->id
+        ])->id;
+        session(['lastInsertId' => $id]);
     }
 }

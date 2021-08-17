@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-flex justify-content-between">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset("images/....png") }}" class="logo" alt="logo">
+                    <img src="{{ asset("images/wargame.png") }}" class="logo" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -60,11 +60,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right px-5 justify-content-center" aria-labelledby="navbarDropdown">
-                                <a href="{{ route('compte') }}" class="mx-3 text-reset">
-                                    Mon compte
-                                </a></br>
                                 <a href="{{ route('profil',$user=Auth::user()->id)}}" class="mx-3 text-reset">
-                                    Profil
+                                   Mon profil
                                 </a></br>
                                 <a href="{{ route('editaccount') }}" class="mx-3 text-reset">
                                     Modifier mes informations
@@ -98,8 +95,8 @@
                 </div>
             </div>
         </nav>
-        <main class="py-4 p-5">
-            <div class="container-fluid text-center">
+        <main class="container-fluid">
+            <div class=" text-center">
                 @if(session()->has('message'))
                 <p class="alert alert-success">{{ session()->get('message') }}</p>
                 @endif

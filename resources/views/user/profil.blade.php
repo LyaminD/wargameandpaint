@@ -2,20 +2,21 @@
 
 @section('content')
 
-<div class="row py-5 px-4 text-dark">
+
+<div class="row py-5 px-4">
     <div class="col-md-5 mx-auto">
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 cover">
                 <div class="media align-items-end profile-head">
-                    <div class="profile mr-3"><img src="{{ asset("images/$user->image") }}" width="130" class="rounded mb-2 img-thumbnail"></div>
-                    <div class="media-body mb-5 text-dark">
+                    <div class="profile mr-3"><img src="{{ asset("images/$user->imageprofil") }}" width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-outline-dark btn-sm btn-block">Changez la photo de profil</a></div>
+                    <div class="media-body mb-5 text-light">
                         <h4 class="mt-0 mb-0">{{ $user->pseudo}}</h4>
-                        <p class="small mb-4 text-dark"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p>
+                        <p class="small mb-4 text-light"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-light p-4 d-flex justify-content-end text-center text-dark">
+            <div class="bg-light p-4 d-flex justify-content-end text-center">
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
                         <h5 class="font-weight-bold mb-0 d-block">215</h5><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
@@ -28,22 +29,57 @@
                     </li>
                 </ul>
             </div>
+            <div class="px-4 py-3">
+                <h5 class="mb-0">About</h5>
+                <div class="p-4 rounded shadow-sm bg-light">
+                    <p class="font-italic mb-0">Web Developer</p>
+                    <p class="font-italic mb-0">Lives in New York</p>
+                    <p class="font-italic mb-0">Photographer</p>
+                </div>
+            </div>
             <div class="px-4 py-3 ">
-                <h5 class="mb-0 text-dark">A propos de moi !</h5>
-                <div class="p-4 rounded shadow-sm bg-light text-dark">
-                    <p class="font-italic mb-0 text-dark">Web Developer</p>
-                    <p class="font-italic mb-0 text-dark">Lives in New York</p>
-                    <p class="font-italic mb-0 text-dark">Photographer</p>
+                <h5 class="mb-0 text-dark">Ajoute moi a tes amis et sois prévenu de mes futurs posts !</h5>
+                <div class="button-div">
+                    <a href="" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter aux amis</a>
                 </div>
             </div>
             <div class="py-4 px-4">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Photos récente</h5><a href="#" class="btn btn-link text-muted">Tout afficher</a>
+                    <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                </div>
+                <div class="row">
+                @foreach ($user->images as $image)
+                <p class="bold text-center px-md-3"><img src="{{ asset("images/$image->name") }}" class="img-fluid rounded shadow-sm"></p>
+                  @endforeach   
                 </div>
             </div>
         </div>
     </div>
 </div>
+<form>
+    <h3>Joindre une image</h3>
+    @if(Session::get('imageprofil'))
+    <input type="text" class="form-control" name="imageprofil" id="imageprofil" value="{{Session::get('imageprofil')}}">
+    @else
+    <input type="text" name="imageprofil" id="imageprofil" class="form-control my-2" placeholder="Upload d'images ci-dessous">
+    @endif
+    <button class="btn-success">Envoyer</button>
+    </div>
+    </div>
+</form>
+<form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="row">
+        <div class="col-md-6 my-2">
+            <input type="file" name="imageprofil" class="form-control">
+        </div>
+        <div class="col-md-6 my-2">
+            <button type="submit" class="btn btn-success">Upload</button>
+        </div>
+    </div>
+</form>
+
+
 @foreach ($user->posts as $post)
 <div class="container my-5 justify-content-center">
     <div class=" row justify-content-center ">
@@ -56,7 +92,7 @@
                             <div class="col">
                                 <div class="d-flex flex-lg-row flex-column-reverse no-gutters justify-content-center">
                                     <div class="col-3 text-right"><img class="img-fluid" id="quotes" src="https://img.icons8.com/ultraviolet/40/000000/quote-left.png" width="110" height="110"></div>
-                                    <div class="col pr-lg-5"><img class=" img-1 mr-lg-5 " src="{{ asset("images/$user->imageprofil") }}" width="130" class="rounded mb-2 img-thumbnail"></div>
+                                    <div class="col pr-lg-5"><img class=" img-1 mr-lg-5 " src="images/{{ $post->user->imageprofil }}" width="130" class="rounded mb-2 img-thumbnail"></div>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +114,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col text-center justify-content-center ">
-                            <p class="bold text-center px-md-3"><img src="{{ asset("images/$post->imageprofil") }}" class="img-fluid rounded shadow-sm"></p>
+                        <p class="bold text-center px-md-3"><img src="images/{{ $post->image->name }}" class="img-fluid rounded shadow-sm"></p>
                         </div>
                     </div>
                     <div class="card-body text-center pb-3 ">

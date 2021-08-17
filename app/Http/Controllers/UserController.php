@@ -23,7 +23,7 @@ class UserController extends Controller
 
     public function profil(User $user)
     {
-        $user->load('posts');
+        $user->load('posts.image','images');
         return view('user.profil', compact('user'));
     }
 
@@ -65,16 +65,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         $user = Auth::user();
-        return view('editaccount', compact('user'));
+        return view('user.editaccount', compact('user'));
     }
 
     public function editpassword()
     {
         $user = Auth::user();
-        return view('editpassword', compact('user'));
+        return view('user.editpassword', compact('user'));
     }
 
     /**
@@ -98,7 +98,7 @@ class UserController extends Controller
             $user->prenom = $request->input('prenom');
             $user->pseudo = $request->input('pseudo');
             $user->email = $request->input('email');
-            $user->image = $request->input('image');
+            $user->imageprofil = $request->input('image');
             $user->save();
 
        
