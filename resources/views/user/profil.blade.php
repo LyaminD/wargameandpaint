@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="row py-5 px-4">
     <div class="col-md-5 mx-auto">
         <!-- Profile widget -->
@@ -19,66 +18,106 @@
             <div class="bg-light p-4 d-flex justify-content-end text-center">
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">215</h5><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
+                        <h5 class="font-weight-bold mb-0 d-block text-dark">{{count($user->images)}}</h5><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
                     </li>
                     <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">745</h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
+                        <h5 class="font-weight-bold mb-0 d-block text-dark">745</h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
                     </li>
                     <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block">340</h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
+                        <h5 class="font-weight-bold mb-0 d-block text-dark">340</h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
                     </li>
                 </ul>
             </div>
             <div class="px-4 py-3">
                 <h5 class="mb-0">About</h5>
-                <div class="p-4 rounded shadow-sm bg-light">
-                    <p class="font-italic mb-0">Web Developer</p>
-                    <p class="font-italic mb-0">Lives in New York</p>
-                    <p class="font-italic mb-0">Photographer</p>
+                <div class="p-4 rounded shadow-sm bg-light ">
+                    <p class="font-italic mb-0 text-dark">Jeux joués :{{$user->jeux}}</p>
+                    <p class="font-italic mb-0 text-dark">Armées jouées :{{$user->armées}}</p>
+                    <p class="font-italic mb-0 text-dark">Liens :{{$user->liens}}</p>
                 </div>
             </div>
             <div class="px-4 py-3 ">
-                <h5 class="mb-0 text-dark">Ajoute moi a tes amis et sois prévenu de mes futurs posts !</h5>
+                <h5 class="mb-0 text-dark">Me suivre et être prévenu de mes futurs posts !</h5>
                 <div class="button-div">
-                    <a href="" class="btn btn-primary" role="button" data-bs-toggle="button">Ajouter aux amis</a>
+                    <a href="" class="btn btn-primary" role="button" data-bs-toggle="button">Me suivre</a>
                 </div>
             </div>
             <div class="py-4 px-4">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Voir toutes les photos
+                </button>
+                <!-- Modal -->
+                <div class="modal fade text-dark" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Mes photos</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner"> 
+                                        @foreach ($user->images as $image)
+                                        <div class="carousel-item <?php if ($loop->iteration == 1) { echo "active"; }?>">
+                                            <img src="{{ asset("images/$image->name") }}" class="d-block w-100" alt="...">
+                                        </div> 
+                                        @endforeach
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
+            </div>
+            <div class="row">
                 @foreach ($user->images as $image)
-                <p class="bold text-center px-md-3"><img src="{{ asset("images/$image->name") }}" class="img-fluid rounded shadow-sm"></p>
-                  @endforeach   
-                </div>
+                <?php if ($loop->iteration < 5) {
+                     echo "  <img src=\"". asset("images/$image->name") ."\" class=\"img-fluid rounded shadow-sm w-50\">";}
+                 ?>
+                @endforeach
             </div>
         </div>
     </div>
 </div>
-<form>
-    <h3>Joindre une image</h3>
-    @if(Session::get('imageprofil'))
-    <input type="text" class="form-control" name="imageprofil" id="imageprofil" value="{{Session::get('imageprofil')}}">
-    @else
-    <input type="text" name="imageprofil" id="imageprofil" class="form-control my-2" placeholder="Upload d'images ci-dessous">
-    @endif
-    <button class="btn-success">Envoyer</button>
-    </div>
-    </div>
+</div>
+<div class="container">
+    <form>
+        <h3>Joindre une image</h3>
+        @if(Session::get('image'))
+        <input type="text" class="form-control" name="image" id="image" value="{{Session::get('image')}}">
+        @else
+        <input type="text" name="image" id="image" class="form-control my-2" placeholder="Upload d'images ci-dessous">
+        @endif
+        <button class="btn-success">Envoyer</button>
+</div>
+</div>
 </form>
 <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-md-6 my-2">
-            <input type="file" name="imageprofil" class="form-control">
+            <input type="file" name="image" class="form-control">
         </div>
         <div class="col-md-6 my-2">
             <button type="submit" class="btn btn-success">Upload</button>
         </div>
     </div>
 </form>
-
+</div>
 
 @foreach ($user->posts as $post)
 <div class="container my-5 justify-content-center">
@@ -114,7 +153,7 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="col text-center justify-content-center ">
-                        <p class="bold text-center px-md-3"><img src="images/{{ $post->image->name }}" class="img-fluid rounded shadow-sm"></p>
+                            <p class="bold text-center px-md-3"><img src="images/{{ $post->image->name }}" class="img-fluid rounded shadow-sm"></p>
                         </div>
                     </div>
                     <div class="card-body text-center pb-3 ">
@@ -145,7 +184,7 @@
 
                     @foreach($post->commentaires as $commentaire)
                     <div class="commentaires ">
-                        <div class="d-flex flex-row mb-2">
+                        <div class="d-flex flex-row mb-2"><img src="images/{{ $commentaire->user->imageprofil }}" width="40" class="rounded-image">
                             <span class="name"><a href="{{route('profil',$commentaire->user_id)}}">{{ $commentaire->user->pseudo}}</a></span>
                             <small class="commentaire-text">{{ $commentaire->content}}</small>
                         </div>

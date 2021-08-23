@@ -15,12 +15,13 @@ class CreateFactionsTable extends Migration
     {
         Schema::create('factions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('jeux_id');
-            $table->string('image');
+            $table->string('nom');
+            $table->unsignedBigInteger('jeu_id');
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
 
-            $table->foreign('jeux_id')->references('id')->on('jeux');
+            $table->foreign('jeu_id')->references('id')->on('jeux');
         });
     }
 

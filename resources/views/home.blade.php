@@ -160,7 +160,7 @@
 
                             @foreach($post->commentaires as $commentaire)
                             <div class="commentaires ">
-                                <div class="d-flex flex-row mb-2"> <img src="images/{{ $commentaire->user->image }}" width="40" class="rounded-image">
+                                <div class="d-flex flex-row mb-2"><img src="images/{{ $commentaire->user->imageprofil }}" width="40" class="rounded-image">
                                     <div class="d-flex flex-column ml-2">
                                         <span class="name"><a href="{{route('profil',$commentaire->user_id)}}">{{ $commentaire->user->pseudo}}</a></span>
                                         <small class="commentaire-text">{{ $commentaire->content}}</small>

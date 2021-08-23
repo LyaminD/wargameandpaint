@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('user.compte', ['user' => $user]);
+        return view('user.profil', ['user' => $user]);
     }
 
     public function profil(User $user)
@@ -84,25 +84,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, User $user)
     {
         $request->validate( [
             'nom' => ['required', 'string', 'max:255'],
             'prenom' => ['required', 'string', 'max:255'],
-            'pseudo' => ['required', 'string', 'max:255'],
+            'pseudo' => ['required', 'string', 'max:255'],     
             'email' => ['required', 'string', 'email', 'max:255'],
+            'jeux' => ['required', 'string', 'max:255'],
+            'armées' => ['required', 'string', 'max:255'],
+            'liens' => ['required', 'string', 'max:255'],
             ]);
 
         $user = Auth::user();
-            $user->nom = $request->input('nom');
-            $user->prenom = $request->input('prenom');
-            $user->pseudo = $request->input('pseudo');
-            $user->email = $request->input('email');
-            $user->imageprofil = $request->input('image');
-            $user->save();
+        $user->update($request->all());
 
-       
-        return redirect()->route('compte')->with('message', 'Informations modifiées !');
+        return redirect()->back()->with('message', 'Informations modifiées !');
     }
 
     public function updatepassword(Request $request)
@@ -125,7 +123,7 @@ class UserController extends Controller
 
             $utilisateur->password = Hash::make(request('password'));
             $utilisateur->save();
-            return redirect()->route('compte')->with('message', 'Mot de passe modifié !');
+            return redirect()->route('profil')->with('message', 'Mot de passe modifié !');
         }
     }
 

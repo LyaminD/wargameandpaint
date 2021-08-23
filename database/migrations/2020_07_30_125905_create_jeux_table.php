@@ -15,7 +15,8 @@ class CreateJeuxTable extends Migration
     {
         Schema::create('jeux', function (Blueprint $table) {
             $table->id();   
-            $table->string('image');
+            $table->string('nom');
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
 

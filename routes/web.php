@@ -21,8 +21,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/compte', [App\Http\Controllers\UserController::class, 'index'])->name('compte');
-
 /*------------------------ MODIFICATION DES INFOS DU COMPTE  ---------------------------- */
 Route::get('/editaccount', [App\Http\Controllers\UserController::class, 'edit'])->name('editaccount');
 Route::post('/editaccount', [App\Http\Controllers\UserController::class, 'update'])->name('updateaccount');

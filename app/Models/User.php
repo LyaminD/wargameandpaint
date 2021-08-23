@@ -24,6 +24,9 @@ class User extends Authenticatable
         'password',
         'imageprofil',
         'images',
+        'jeux',
+        'armées',
+        'liens',
     ];
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h2 class="text-center mt-3">Bonjour {{$user->tweetname}}, modifie ici tes informations !</h2>
+<h2 class="text-center mt-3">Bonjour {{$user->pseudo}}, modifie ici tes informations !</h2>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -68,18 +68,57 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="jeux" class="col-md-4 col-form-label text-md-right">{{ __('Jeux') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="text" type="text" class="form-control @error('jeux') is-invalid @enderror" name="jeux" value="{{$user->jeux}}" required autocomplete="jeux">
+
+                                @error('jeux')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="armées" class="col-md-4 col-form-label text-md-right">{{ __('Armées') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="text" type="text" class="form-control @error('armées') is-invalid @enderror" name="armées" value="{{$user->armées}}" required autocomplete="armées">
+
+                                @error('armées')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="liens" class="col-md-4 col-form-label text-md-right">{{ __('Liens FB / Twitter ...') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="text" type="text" class="form-control @error('liens') is-invalid @enderror" name="liens" value="{{$user->liens}}" required autocomplete="liens">
+
+                                @error('liens')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
                         <div class="col-md-6">
                             @if(Session::get('image'))
-                            <input type="text" class="form-control" name="image" id="image" value="{{Session::get('image')}}">
+                            <input type="text" class="form-control" name="imageprofil" id="image" value="{{Session::get('image')}}">
                             @else
-                            <input type="text" name="image" id="image" class="form-control my-2" placeholder="Upload d'images ci-dessous">
+                            <input type="text" name="imageprofil" id="image" value="{{$user->imageprofil}}" class="form-control my-2" placeholder="Upload d'images ci-dessous">
                             @endif
                             <button class="button is-link btn-success" type="submit">Envoyer</button>
+                        </div>
                     </form>
                     <div class="form-group row">
-
-
                         <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
