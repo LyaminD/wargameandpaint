@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use App\Models\Post;
 
 class UserController extends Controller
 {
@@ -23,7 +24,7 @@ class UserController extends Controller
 
     public function profil(User $user)
     {
-        $user->load('posts.image','images');
+        $user->load('posts.images','images');
         return view('user.profil', compact('user'));
     }
 

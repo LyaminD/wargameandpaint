@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Faction;
 use Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -43,14 +44,16 @@ class PostController extends Controller
         ]);
 
         $user = Auth::user();
-        Post::create([
+         $insert = Post::create([
             'content' => $request->input('content'),
-            'image_id' => session('lastInsertId'),
             'user_id' => $user->id,
+            'faction_id' => $request->input('faction'),
             'titre' => $request->input('titre'),
+            
         ]);
+        session() -> put('post_id' , $insert->id) ;
 
-        return redirect()->route('home')->with('message', 'Post poster avec succès');
+        return view('post.ajoutImage')->with('message', 'Post créer avec succès, ajouter votre image');
     }
 
     /**
@@ -63,6 +66,17 @@ class PostController extends Controller
     {
         //
     }
+
+
+
+    public function showFaction()
+    {
+        $posts = Post::all()->sortByDesc('created_at');
+        $posts->load('images');
+        $factions = Faction::all();
+        return view('home', ['posts' => $posts, 'factions' => $factions] );
+    }
+
 
     /**
      * Show the form for editing the specified resource.

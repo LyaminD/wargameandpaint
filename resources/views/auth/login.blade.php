@@ -1,8 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container my-5  ">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-8">
+            <div id="loginBackground" class="bg-dark text-center">
+                <h1 class="my-3">Wargame & Paint</h1>
+                <h1>Les règles sont simples :</h1>
+                <p>Wargame & Paint est un site de partage de photos sur l'univers de Games Workshop !</p>
+                <p>Toutes photos ne concernant pas l'univers de Games Workshop ou inadaptées seront supprimées !</p>
+                <p>On est ici pour partager et discuter, tous propos racistes , sexiste ou déplacés seront supprimés et celui qui post banni.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center my-5">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
@@ -18,9 +30,9 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -32,9 +44,9 @@
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -58,9 +70,9 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Mot de passe oublié ?') }}
-                                    </a>
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Mot de passe oublié ?') }}
+                                </a>
                                 @endif
                             </div>
                         </div>

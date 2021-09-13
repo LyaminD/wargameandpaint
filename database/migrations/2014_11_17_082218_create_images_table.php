@@ -17,11 +17,13 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('post_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->engine = 'InnoDB';
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('post_id')->references('id')->on('posts');
         });
     }
 

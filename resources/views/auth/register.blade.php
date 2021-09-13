@@ -2,7 +2,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-8">
+            <div id="loginBackground" class="bg-dark text-center">
+                <h1>Wargame & Paint</h1>
+                <h1>Les règles sont simples :</h1>
+                <p>Wargame & Paint est un site de partage de photos sur l'univers de Games Workshop !</p>
+                <p>Toutes photos ne concernant pas l'univers de Games Workshop ou inadaptées seront supprimées !</p>
+                <p>On est ici pour partager et discuter, tous propos racistes , sexiste ou déplacés seront supprimés et celui qui post banni.</p>
+            </div>
+        </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Création du compte') }}</div>

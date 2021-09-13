@@ -54,19 +54,24 @@
                         </li>
                         @endif
                         @else
+                        <li class="nav-item text-dark align-item-center mr-3">
+                            <a href="{{ route('home') }}" class="nav-link mx-3 text-reset text-dark ">
+                                Accueil
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle mr-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->pseudo }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right px-5 justify-content-center" aria-labelledby="navbarDropdown">
-                                <a href="{{ route('profil',$user=Auth::user()->id)}}" class="mx-3 text-reset">
-                                   Mon profil
+                            <div class="dropdown-menu dropdown-menu-right px-5 mr-3" aria-labelledby="navbarDropdown">
+                                <a href="{{ route('profil',$user=Auth::user()->id)}}" class="text-reset">
+                                    Mon profil
                                 </a></br>
-                                <a href="{{ route('editaccount') }}" class="mx-3 text-reset">
+                                <a href="{{ route('editaccount') }}" class="text-reset">
                                     Modifier mes informations
                                 </a></br>
-                                <a href="{{ route('editpassword') }}" class="mx-3 text-reset">
+                                <a href="{{ route('editpassword') }}" class="text-reset">
                                     Modifier le mot de passe
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -82,6 +87,33 @@
                         @endguest
                     </ul>
                 </div>
+
+                <div class="dropdown mr-3">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Warhammer 40 000
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <?php $factions = GetFactions() ?>
+                        @foreach ($factions as $faction)
+                        @if ($faction->jeu_id == '2')
+                        <a class="dropdown-item" href="#">{{$faction->nom}}</a>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
+                <div class="dropdown ">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Age Of Sigmar
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        @foreach ($factions as $faction)
+                        @if ($faction->jeu_id == '1')
+                        <a class="dropdown-item" href="#">{{$faction->nom}}</a>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
+
                 <!-- Search widget-->
                 <div class=" ms-4 container my-2 d-flex justify-content-end">
                     <form method="get" action="{{ route('search') }}">
@@ -95,6 +127,11 @@
                 </div>
             </div>
         </nav>
+
+        <div>
+            <h4 class="bg-dark text-center">Tes amis</h4>
+        </div>
+
         <main class="container-fluid">
             <div class=" text-center">
                 @if(session()->has('message'))
@@ -114,6 +151,7 @@
             @yield('content')
         </main>
     </div>
+
     <footer class="bg-light text-center text-lg-start">
         <div class="text-center p-3" style="background-color: white;">
             <h6 class="text-dark">© 2021 Copyright: Wargame & Paint By DIAFAT Lyamin</h6>
@@ -126,7 +164,7 @@
         </div>
     </footer>
     </footer>
-    
+
 </body>
 
 </html>

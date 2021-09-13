@@ -5,10 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class jeux extends Model
+class Jeu extends Model
 {
     use HasFactory;
-    public function jeux()
+    protected $fillable = [
+        'nom',
+        'image',
+       
+    ];
+
+    public function factions()
     {
         return $this->hasMany(Faction::class);
     }

@@ -12,6 +12,7 @@ class Image extends Model
     protected $fillable = [
         'name',
         'user_id',
+        'post_id'
     ];
 
     public function user()
@@ -20,6 +21,6 @@ class Image extends Model
     }
     public function post()
     {
-        return $this->hasOne(Post::class);
+        return $this->belongsTo(Post::class);
     }
 }

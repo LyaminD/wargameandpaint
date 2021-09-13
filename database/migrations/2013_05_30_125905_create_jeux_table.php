@@ -20,7 +20,6 @@ class CreateJeuxTable extends Migration
             $table->timestamps();
             $table->engine = 'InnoDB';
 
-          
         });
     }
 

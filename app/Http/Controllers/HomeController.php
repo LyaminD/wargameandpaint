@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Faction;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all()->sortByDesc('created_at');
-        $posts->load('image');
-        return view('home', ['posts' => $posts]);
+        $posts->load('images');
+        $factions = Faction::all();
+        return view('home', ['posts' => $posts, 'factions' => $factions] );
     }
 }

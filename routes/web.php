@@ -41,3 +41,6 @@ Route::get('/search', [App\Http\Controllers\PostController::class, 'search'])->n
 
 /*--------------------------------------- UPLOAD IMAGES ---------------------------------------------- */
 Route::post('image-upload', [App\Http\Controllers\ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
+
+/*--------------------------------------- FACTIONS ---------------------------------------------- */
+Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index');

@@ -10,9 +10,9 @@ class Post extends Model
 
     protected $fillable = [
         'content',
-        'image_id',
         'user_id',
         'titre',
+        'faction_id'
     ];  
 
     use HasFactory;
@@ -24,8 +24,12 @@ class Post extends Model
     {
         return $this->hasMany(Commentaire::class);
     }
-    public function image()
+    public function images()
     {
-        return $this->belongsTo(Image::class);
+        return $this->hasMany(Image::class);
+    }
+    public function faction()
+    {
+        return $this->belongsTo(Jeux::class);
     }
 }
