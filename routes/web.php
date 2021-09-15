@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,6 @@ Route::post('image-upload', [App\Http\Controllers\ImageUploadController::class, 
 
 /*--------------------------------------- FACTIONS ---------------------------------------------- */
 Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index');
+
+Route::get('image', [FileController::class, 'create'])->name('image'); 
+Route::post('imageUpload', [FileController::class, 'store'])->name('imageUpload');

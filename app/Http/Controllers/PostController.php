@@ -53,7 +53,7 @@ class PostController extends Controller
         ]);
         session() -> put('post_id' , $insert->id) ;
 
-        return view('post.ajoutImage')->with('message', 'Post créer avec succès, ajouter votre image');
+        return view('create')->with('message', 'Post créer avec succès, ajouter votre image');
     }
 
     /**
