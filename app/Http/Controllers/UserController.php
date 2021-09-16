@@ -150,7 +150,6 @@ class UserController extends Controller
 
         $users = DB::table('users')
             ->where('pseudo', 'like', "%$recherche%")
-            ->select('*')
             ->get();
 
         return view('search', compact('users'));

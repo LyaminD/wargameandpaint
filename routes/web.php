@@ -50,3 +50,6 @@ Route::resource('/posts', App\Http\Controllers\PostController::class)->except('i
 
 /*--------------------------------------- FOLLOWS ---------------------------------------------- */
 Route::post('/profil/{user}/follow', [App\Http\Controllers\FollowsController::class, 'store'])->name('follow');
+
+/*---------------------------------------TRI PAR FACTIONS ---------------------------------------------- */
+Route::get('/posts/{faction}/show', [App\Http\Controllers\PostController::class, 'show'])->name('posts.showFaction');

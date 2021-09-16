@@ -42,9 +42,6 @@
                 <img class="postcard__img" src="images/{{ $image->name }}" alt="Image Title" />
                 @endforeach</a>
 
-            
-
-
             <div class="postcard__text">
                 <h3 class="postcard__title blue"><img src="images/{{ $post->user->imageprofil }}" width="50" class="rounded-circle"><a href="#">{{ $post->user->pseudo}}</a></h3>
                 <h1 class="postcard__title blue"><a href="#">{{ $post->titre}}</a></h1>

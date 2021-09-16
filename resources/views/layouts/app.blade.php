@@ -92,19 +92,34 @@
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Warhammer 40 000
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                    <FORM>
+                        <SELECT onChange="document.location='posts/' + this.options[this.selectedIndex].value +'/show'">
+                            <OPTION VALUE="#" SELECTED> CHOISIR </OPTION>
+                            <?php $factions = GetFactions() ?>
+                            @foreach ($factions as $faction)
+                            @if ($faction->jeu_id == '2')
+                            <OPTION VALUE="{{$faction->id}}">{{$faction->nom}}</OPTION>
+                            @endif
+                            @endforeach
+                            >
+                        </SELECT>
+                    </FORM>
+
+                    <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <?php $factions = GetFactions() ?>
                         @foreach ($factions as $faction)
                         @if ($faction->jeu_id == '2')
                         <a class="dropdown-item" href="#">{{$faction->nom}}</a>
                         @endif
                         @endforeach
-                    </div>
+                    </div> -->
                 </div>
                 <div class="dropdown ">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Age Of Sigmar
                     </a>
+
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         @foreach ($factions as $faction)
                         @if ($faction->jeu_id == '1')
@@ -112,6 +127,7 @@
                         @endif
                         @endforeach
                     </div>
+
                 </div>
 
                 <!-- Search widget-->
@@ -133,7 +149,7 @@
             @include ('follows-list')
         </div>
         @endif
-        
+
         <main class="container-fluid">
             <div class=" text-center">
                 @if(session()->has('message'))

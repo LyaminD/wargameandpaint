@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('armées')->nullable();
             $table->string('liens')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('imageprofil')->nullable();
+            $table->string('imageprofil')->default('avatar.jpg');
             $table->string('password');
             $table->unsignedBigInteger('role_id')->default(1);
             $table->unsignedBigInteger('image_id')->nullable();

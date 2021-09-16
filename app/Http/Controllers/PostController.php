@@ -62,9 +62,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Faction $faction)
     {
-        //
+        $posts = Post::
     }
 
     public function showFaction()
@@ -120,4 +120,7 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('home')->with('message', 'Post supprimer avec succès');
     }
+
+
+
 }
