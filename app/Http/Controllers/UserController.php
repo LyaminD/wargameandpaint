@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 
 class UserController extends Controller
@@ -137,5 +138,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search' => 'required', 'string', 'max:20'
+        ]);
+
+        $recherche = $request->input('search');
+
+        $users = DB::table('users')
+            ->where('pseudo', 'like', "%$recherche%")
+            ->select('*')
+            ->get();
+
+        return view('search', compact('users'));
     }
 }

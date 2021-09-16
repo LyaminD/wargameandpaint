@@ -67,8 +67,6 @@ class PostController extends Controller
         //
     }
 
-
-
     public function showFaction()
     {
         $posts = Post::all()->sortByDesc('created_at');
@@ -121,23 +119,5 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route('home')->with('message', 'Post supprimer avec succès');
-    }
-
-    public function search(Request $request)
-    {
-        $request->validate([
-            'search' => 'required', 'string', 'max:20'
-        ]);
-
-        $recherche = $request->input('search');
-
-        $posts = DB::table('posts')
-            ->where('posts.content', 'like', "%$recherche%")
-            ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*','users.imageprofil', 'users.postname')
-            ->get();
-
-
-        return view('search', compact('posts'));
     }
 }

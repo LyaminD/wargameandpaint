@@ -38,7 +38,7 @@ Route::get('users/{user}', [App\Http\Controllers\UserController::class,'profil']
 Route::resource('/commentaires', App\Http\Controllers\CommentaireController::class)->except('index');
 
 /*------------------------ PUBLICATION DE LA RECHERCHE -------------------------------------------------------- */
-Route::get('/search', [App\Http\Controllers\PostController::class, 'search'])->name('search');
+Route::get('/search', [App\Http\Controllers\UserController::class, 'search'])->name('search');
 
 /*--------------------------------------- UPLOAD IMAGES ---------------------------------------------- */
 Route::post('image-upload', [App\Http\Controllers\ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');

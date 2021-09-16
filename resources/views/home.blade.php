@@ -98,40 +98,6 @@
     </div>
 </section>
 
-<!-- <div class="p-2">
-                        <form action="{{route('commentaires.store')}}" method="post">
-                            @csrf
-                            <div class="commentaire  text-center my-2">
-                                <h3>Commente !</h3>
-                                <div class="commentaire-input"> <input type="text" name="content" class="form-control" placeholder="Commentaire">
-                                    <h3>Joindre une image</h3>
-                                    @if(Session::get('image'))
-                                    <input type="text" class="form-control" name="image" id="image" value="{{Session::get('image')}}">
-                                    @else
-                                    <input type="text" name="image" id="image" class="form-control my-2" placeholder="Upload d'images ci-dessous">
-                                    @endif
-                                    <input type="hidden" value="{{$post->id}}" name="post_id">
-                                    <input type="submit" value="envoyer" class="my-2 btn-success">
-                                </div>
-                            </div>
-                        </form>
-                        <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-12 my-2">
-                                    <input type="file" name="image" class="form-control">
-                                </div>
-                                <hr>
-                                <div class="col-md-12 my-2 text-center">
-                                    <button type="submit" class="btn btn-success">Upload</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div> -->
-
-
-
-
 
 
 
