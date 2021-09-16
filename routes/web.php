@@ -42,9 +42,11 @@ Route::get('/search', [App\Http\Controllers\PostController::class, 'search'])->n
 
 /*--------------------------------------- UPLOAD IMAGES ---------------------------------------------- */
 Route::post('image-upload', [App\Http\Controllers\ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
+Route::get('image', [FileController::class, 'create'])->name('image'); 
+Route::post('imageUpload', [FileController::class, 'store'])->name('imageUpload');
 
 /*--------------------------------------- FACTIONS ---------------------------------------------- */
 Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index');
 
-Route::get('image', [FileController::class, 'create'])->name('image'); 
-Route::post('imageUpload', [FileController::class, 'store'])->name('imageUpload');
+/*--------------------------------------- FOLLOWS ---------------------------------------------- */
+Route::post('/profil/{user}/follow', [App\Http\Controllers\FollowsController::class, 'store'])->name('follow');

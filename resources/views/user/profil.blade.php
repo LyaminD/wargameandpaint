@@ -38,9 +38,19 @@
             </div>
             <div class="px-4 py-3 ">
                 <h5 class="mb-0 text-dark">Me suivre et être prévenu de mes futurs posts !</h5>
-                <div class="button-div">
-                    <a href="" class="btn btn-primary" role="button" data-bs-toggle="button">Me suivre</a>
-                </div>
+
+                @unless (auth()->user()->is($user))
+
+                <form method="POST" action="{{ route('follow',$user)}}">
+                    @csrf
+                    <a href="">
+                        <button type="submit" class="btn btn-warning shadow ml-3">
+                            {{ auth()->user()->isFollowing($user) ? 'Se désabonner' : 'S\'abonner' }}
+                        </button>
+                    </a>
+                </form>
+
+                @endif
             </div>
             <div class="py-4 px-4">
                 <!-- Button trigger modal -->
@@ -113,7 +123,7 @@
 <section class="dark">
     <div class="container py-4">
         <h1 class="h1 text-center" id="pageHeaderTitle">Mes derniers posts</h1>
-        @foreach    ($user->posts as $post)
+        @foreach ($user->posts as $post)
         <article class="postcard dark blue">
 
             <a class="postcard__img_link" href="{{route('profil',$post->user_id)}}"> @foreach ($post->images as $image)

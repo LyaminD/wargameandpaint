@@ -127,11 +127,11 @@
                 </div>
             </div>
         </nav>
-
-        <div>
-            <h4 class="bg-dark text-center">Tes amis</h4>
+        @if (Auth::user())
+        <div class="col-md-2 text-center sidebars" id="friendsList">
+            @include ('follows-list')
         </div>
-
+        @endif
         <main class="container-fluid">
             <div class=" text-center">
                 @if(session()->has('message'))
