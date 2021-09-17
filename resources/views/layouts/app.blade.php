@@ -35,6 +35,19 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                       @if (auth()->user() && auth()->user()->role_id == 2)
+                        <a class="nav-link" href="{{ route('admin')}}">Administration</a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></a>
+                            <div class="dropdown-menu dropdown-menu-right px-5 justify-content-center" aria-labelledby="navbarDropdown">
+                                <a href="{{ route('AdminPost') }}" class="mx-3 text-reset">Gestion des posts</a>
+                                <a href="{{ route('AdminComment') }}" class="mx-3 text-reset">Gestion des commentaires</a>
+                                <a href="{{ route('AdminUser') }}" class="mx-3 text-reset">Gestion des utilisateurs</a>
+                            </div>
+                        </li>
+                        @endif
+                    </ul>
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     </ul>
