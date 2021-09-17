@@ -18,11 +18,11 @@ class CreateCommentairesTable extends Migration
             $table->unsignedBigInteger('post_id');
             $table->text('content');
             $table->text('image')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete("set null");
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }

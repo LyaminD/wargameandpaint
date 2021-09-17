@@ -121,6 +121,10 @@ class PostController extends Controller
         return redirect()->route('home')->with('message', 'Post supprimer avec succès');
     }
 
-
+    public function destroypost(Post $post)
+    {
+        $post->delete();
+        return redirect()->route('adminpost')->with('message', 'Post supprimée avec succès');
+    }
 
 }

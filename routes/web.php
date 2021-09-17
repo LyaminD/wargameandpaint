@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,3 +54,10 @@ Route::post('/profil/{user}/follow', [App\Http\Controllers\FollowsController::cl
 
 /*---------------------------------------TRI PAR FACTIONS ---------------------------------------------- */
 Route::get('/posts/{faction}/show', [App\Http\Controllers\PostController::class, 'show'])->name('posts.showFaction');
+
+/*---------------------------------------ADMINISTRATION ---------------------------------------------- */
+Route::get('/admin/index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin/post', [App\Http\Controllers\AdminController::class, 'post'])->name('adminpost');
+Route::get('/admin/user', [App\Http\Controllers\AdminController::class, 'user'])->name('adminuser');
+Route::get('/admin/comment', [App\Http\Controllers\AdminController::class, 'commentaire'])->name('admincomment');
+Route::delete('/user/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('adminuserdestroy');
