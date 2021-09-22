@@ -115,6 +115,11 @@
                         </div>
                     </div>
                 </form>
+                <form action="{{route('deleteUser',$user)}}" method="post">
+                    @CSRF
+                    @method('delete')
+                    <input type="submit" value="Supprimer mon compte" class="btn btn-danger">
+                </form>
             </div>
         </div>
     </div>

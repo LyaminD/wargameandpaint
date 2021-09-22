@@ -104,4 +104,16 @@ class CommentaireController extends Controller
         $commentaire->delete();
         return redirect()->route('home')->with('message', 'Commentaire supprimer avec succès');
     }
+
+    public function destroycomment(Commentaire $commentaire)
+    {
+        $commentaire->delete();
+        return redirect()->route('admincomment')->with('message', 'Commentaire supprimée avec succès');
+    }
+
+    public function commentaire(Commentaire $commentaire)
+    {
+        $commentaire = Commentaire::all();
+        return view('admin.admincomment',compact('commentaire'));
+    }
 }

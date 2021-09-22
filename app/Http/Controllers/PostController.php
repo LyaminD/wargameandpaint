@@ -56,16 +56,7 @@ class PostController extends Controller
         return view('create')->with('message', 'Post créer avec succès, ajouter votre image');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Faction $faction)
-    {
-        $posts = Post::
-    }
+    
 
     public function showFaction()
     {
@@ -120,7 +111,16 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('home')->with('message', 'Post supprimer avec succès');
     }
+    
+    public function destroypost(Post $post)
+    {
+        $post->delete();
+        return redirect()->route('adminpost')->with('message', 'Post supprimée avec succès');
+    }
 
-
-
+    public function post(Post $post)
+    {
+        $post = Post::all();
+        return view('admin.adminpost', compact('post'));
+    }
 }

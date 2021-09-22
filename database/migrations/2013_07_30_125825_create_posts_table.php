@@ -17,12 +17,12 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->text('content');
             $table->text('titre');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('faction_id');
             $table->timestamps();
             $table->engine = 'InnoDB';
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('faction_id')->references('id')->on('factions');
             
         });

@@ -22,8 +22,8 @@ class CreateImagesTable extends Migration
             $table->timestamps();
             $table->engine = 'InnoDB';
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

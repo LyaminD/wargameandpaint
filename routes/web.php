@@ -19,12 +19,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::middleware(['auth'])->group(function(){
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /*------------------------ MODIFICATION DES INFOS DU COMPTE  ---------------------------- */
 Route::get('/editaccount', [App\Http\Controllers\UserController::class, 'edit'])->name('editaccount');
 Route::post('/editaccount', [App\Http\Controllers\UserController::class, 'update'])->name('updateaccount');
+Route::delete('/deleteUser/{user}', [App\Http\Controllers\UserController::class, 'deleteUser'])->name('deleteUser');
 
 /*------------------------ MODIFICATION DU MOT DE PASSE------------------------------------- */
 Route::get('/editpassword', [App\Http\Controllers\UserController::class, 'editpassword'])->name('editpassword');
@@ -53,3 +55,17 @@ Route::post('/profil/{user}/follow', [App\Http\Controllers\FollowsController::cl
 
 /*---------------------------------------TRI PAR FACTIONS ---------------------------------------------- */
 Route::get('/posts/{faction}/show', [App\Http\Controllers\PostController::class, 'show'])->name('posts.showFaction');
+
+});
+
+/*---------------------------------------ADMINISTRATION ---------------------------------------------- */
+Route::middleware(['admin'])->group(function(){
+
+Route::get('/admin/index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin/post', [App\Http\Controllers\PostController::class, 'post'])->name('adminpost');
+Route::get('/admin/user', [App\Http\Controllers\UserController::class, 'user'])->name('adminuser');
+Route::get('/admin/comment', [App\Http\Controllers\CommentaireController::class, 'commentaire'])->name('admincomment');
+Route::delete('/destroyUser/{user}', [App\Http\Controllers\UserController::class, 'destroyUser'])->name('destroyUser'); 
+Route::delete('/destroyPost/{post}', [App\Http\Controllers\PostController::class, 'destroypost'])->name('destroyPost'); 
+Route::delete('/destroyComment/{comment}', [App\Http\Controllers\CommentaireController::class, 'destroyComment'])->name('destroyComment'); 
+});

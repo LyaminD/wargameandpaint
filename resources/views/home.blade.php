@@ -82,11 +82,13 @@
                     <a href="{{route('commentaires.edit',$commentaire)}}">
                         <li class="tag__item"><i class="fas fa-tag mr-2"></i>Modifier le commentaire</li>
                         @endif
+                        @if (Auth::user()->can('delete', $commentaire))
                         <form action="{{route('commentaires.destroy',$commentaire)}}" method="POST">
                             @csrf
                             @method('delete')
                             <input type="submit" value="Supprimer" class="tag__item">
                         </form>
+                        @endif
                 </ul>
             </div>
         </article>

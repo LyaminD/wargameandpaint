@@ -135,10 +135,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyUser(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('adminuser')->with('message', 'Utilisateur supprimer avec succès');
     }
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+        Auth::logout();
+        session()->flush();
+        return redirect()->route('login')->with('message', 'Compte supprimer avec succès');;
+    }
+
 
     public function search(Request $request)
     {
@@ -154,4 +164,10 @@ class UserController extends Controller
 
         return view('search', compact('users'));
     }
+
+    public function user()
+    {
+        $user = User::all();
+        return view('admin.adminuser', compact('user'));
+    }  
 }
