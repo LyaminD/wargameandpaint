@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             JeuSeeder::class,
             FactionSeeder::class,
             UserSeeder::class,
+            PostSeeder::class,
         ]);
     }
 }

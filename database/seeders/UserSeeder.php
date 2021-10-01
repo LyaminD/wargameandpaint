@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Image;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -25,8 +24,6 @@ class UserSeeder extends Seeder
             $randPass = Str::random(6) . rand(100, 200) . '!!!';
 
             DB::table('users')->insert([
-                'prenom' => $randName,
-                'nom' => $randName,
                 'pseudo' => $randName,
                 'email' => $randMail . '@' . $randMail . '.fr',
                 'imageprofil' => 'avatar.jpg',
@@ -35,8 +32,6 @@ class UserSeeder extends Seeder
         }
 
         DB::table('users')->insert([
-            'prenom' => 'TEST',
-            'nom' => 'TEST',
             'pseudo' => 'TEST',
             'email' => 'test@test.fr',
             'imageprofil' => 'avatar.jpg',
@@ -44,8 +39,6 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'prenom' => 'Yamms',
-            'nom' => 'Yamms',
             'pseudo' => 'Yamms',
             'email' => 'Lyamin.diafat@sfr.fr',
             'imageprofil' => 'avatar.jpg',

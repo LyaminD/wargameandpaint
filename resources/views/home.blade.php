@@ -10,8 +10,8 @@
                 <div class="p-2">
                     <form action="{{route('posts.store')}}" method="POST">
                         @csrf
-                        <div class="posts my-3">
-                            <h3>Ecris ton post en dessous</h3>
+                        <div class="posts my-3 text-dark">
+                            <h3>Balance ton post</h3>
                             <div class="posts-input">
                                 <input type="text" name="titre" class="form-control my-3" placeholder="Donne un titre">
                                 <div class="posts-input">
@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<section class="dark">
+<section class="">
     <div class="container py-4">
         <h1 class="h1 text-center" id="pageHeaderTitle">Fil d'actualité</h1>
         @foreach ($posts as $post)
@@ -47,7 +47,7 @@
                 <h1 class="postcard__title blue"><a href="#">{{ $post->titre}}</a></h1>
                 <div class="postcard__subtitle small">
                     <time datetime="2020-05-25 12:00:00">
-                        <i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
+                        <i class="fas fa-calendar-alt mr-2"></i>
                     </time>
                 </div>
                 <div class="postcard__bar"></div>

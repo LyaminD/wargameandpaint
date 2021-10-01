@@ -90,8 +90,6 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate( [
-            'nom' => ['required', 'string', 'max:255'],
-            'prenom' => ['required', 'string', 'max:255'],
             'pseudo' => ['required', 'string', 'max:255'],     
             'email' => ['required', 'string', 'email', 'max:255'],
             'jeux' => ['required', 'string', 'max:255'],
