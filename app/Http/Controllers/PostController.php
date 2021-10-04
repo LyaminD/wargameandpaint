@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Faction;
 use Auth;
-use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -16,16 +15,6 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -57,13 +46,18 @@ class PostController extends Controller
     }
 
     
-
+/** 
+     * Display a listing of the resource.
+     *
+     * @param  \app\http\Controller\Post  $post
+     * @return \Illuminate\Http\Response
+     */
     public function showFaction()
     {
         $posts = Post::all()->sortByDesc('created_at');
         $posts->load('images');
         $factions = Faction::all();
-        return view('home', ['posts' => $posts, 'factions' => $factions] );
+        return view('faction', ['posts' => $posts, 'factions' => $factions] );
     }
 
 
@@ -112,15 +106,41 @@ class PostController extends Controller
         return redirect()->route('home')->with('message', 'Post supprimer avec succès');
     }
     
+    /** 
+     * Remove the specified resource from storage for ADMIN session.
+     *
+     * @param  \app\http\Controller\Post  $post
+     * @return \Illuminate\Http\Response
+     */
     public function destroypost(Post $post)
     {
         $post->delete();
         return redirect()->route('adminpost')->with('message', 'Post supprimée avec succès');
     }
 
+    /** 
+     * Display a listing of the resource.
+     *
+     * @param  \app\http\Controller\Post  $post
+     * @return \Illuminate\Http\Response
+     */
     public function post(Post $post)
     {
         $post = Post::all();
         return view('admin.adminpost', compact('post'));
+    }
+
+    /** 
+    * Display a listing of the resource.
+    *
+    * @param  \app\http\Controller\Post  $post
+    * @return \Illuminate\Http\Response
+    */
+    public function show()
+    {
+        $posts = Post::where( 'faction_id', $faction_id)->sortByDesc('created_at');
+        $posts->load('images');
+        $factions = Faction::all();
+        return view('faction', ['posts' => $posts, 'factions' => $factions] );
     }
 }

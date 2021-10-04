@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\DB;
-use App\Models\Post;
 
 class UserController extends Controller
 {
@@ -17,48 +16,27 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $user = Auth::user();
         return view('user.profil', ['user' => $user]);
     }
 
+     /**
+     * Display a listing of the resource.
+     *
+     * @param  \app\http\Controller\User  $user
+     * @return \Illuminate\Http\Response
+     */
     public function profil(User $user)
     {
         $user->load('posts.images','images');
         return view('user.profil', compact('user'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -73,6 +51,12 @@ class UserController extends Controller
         return view('user.editaccount', compact('user'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function editpassword()
     {
         $user = Auth::user();
@@ -86,7 +70,6 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
     public function update(Request $request, User $user)
     {
         $request->validate( [
@@ -103,6 +86,13 @@ class UserController extends Controller
         return redirect()->back()->with('message', 'Informations modifiées !');
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function updatepassword(Request $request)
     {
         $request->validate([
@@ -130,8 +120,8 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *@param  \app\http\Controller\User  $user
+     *@return \Illuminate\Http\Response
      */
     public function destroyUser(User $user)
     {
@@ -139,6 +129,12 @@ class UserController extends Controller
         return redirect()->route('adminuser')->with('message', 'Utilisateur supprimer avec succès');
     }
 
+     /**
+     * Remove the specified resource from storage.
+     *
+     *@param  \app\http\Controller\User  $user
+     *@return \Illuminate\Http\Response
+     */
     public function deleteUser(User $user)
     {
         $user->delete();
@@ -147,7 +143,11 @@ class UserController extends Controller
         return redirect()->route('login')->with('message', 'Compte supprimer avec succès');;
     }
 
-
+    /**
+     * Display a listing of the resource.
+     *@param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function search(Request $request)
     {
         $request->validate([
@@ -163,6 +163,11 @@ class UserController extends Controller
         return view('search', compact('users'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function user()
     {
         $user = User::all();

@@ -41,8 +41,6 @@ class FileController extends Controller
             }
         }
 
-
-
         return redirect('home')->with('success', 'Les images ont bien étés envoyées !');
     }
 }

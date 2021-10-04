@@ -30,28 +30,24 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('images/wargame.png') }}" class="logo" alt="logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         @if (auth()->user() && auth()->user()->role_id == 2)
-                            <a class="nav-link" href="{{ route('admin.index') }}">Administration</a>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></a>
-                                <div class="dropdown-menu dropdown-menu-right px-5 justify-content-center"
-                                    aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('adminpost') }}" class="mx-3 text-reset">Gestion des posts</a>
-                                    <a href="{{ route('admincomment') }}" class="mx-3 text-reset">Gestion des
-                                        commentaires</a>
-                                    <a href="{{ route('adminuser') }}" class="mx-3 text-reset">Gestion des
-                                        utilisateurs</a>
-                                </div>
-                            </li>
+                        <a class="nav-link" href="{{ route('admin.index') }}">Administration</a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></a>
+                            <div class="dropdown-menu dropdown-menu-right px-5 justify-content-center" aria-labelledby="navbarDropdown">
+                                <a href="{{ route('adminpost') }}" class="mx-3 text-reset">Gestion des posts</a>
+                                <a href="{{ route('admincomment') }}" class="mx-3 text-reset">Gestion des
+                                    commentaires</a>
+                                <a href="{{ route('adminuser') }}" class="mx-3 text-reset">Gestion des
+                                    utilisateurs</a>
+                            </div>
+                        </li>
                         @endif
                     </ul>
                     <ul class="navbar-nav mr-auto">
@@ -59,93 +55,88 @@
                     <ul class="navbar-nav ml-auto">
                         @guest
                         @else
-                            <li class="nav-item text-dark align-item-center mr-3">
-                                <a href="{{ route('home') }}" class="nav-link mx-3 text-reset text-dark ">
-                                    Accueil
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle mr-3" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->pseudo }}
-                                </a>
+                        <li class="nav-item text-dark align-item-center mr-3">
+                            <a href="{{ route('home') }}" class="nav-link mx-3 text-reset text-dark ">
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle mr-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->pseudo }}
+                            </a>
 
-                                <div class="dropdown-menu dropdown-menu-right px-5 mr-3" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('profil', $user = Auth::user()->id) }}" class="text-reset">
-                                        Mon profil
-                                    </a></br>
-                                    <a href="{{ route('editaccount') }}" class="text-reset">
-                                        Modifier mes informations
-                                    </a></br>
-                                    <a href="{{ route('editpassword') }}" class="text-reset">
-                                        Modifier le mot de passe
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <div class="dropdown-menu dropdown-menu-right px-5 mr-3" aria-labelledby="navbarDropdown">
+                                <a href="{{ route('profil', $user = Auth::user()->id) }}" class="text-reset">
+                                    Mon profil
+                                </a></br>
+                                <a href="{{ route('editaccount') }}" class="text-reset">
+                                    Modifier mes informations
+                                </a></br>
+                                <a href="{{ route('editpassword') }}" class="text-reset">
+                                    Modifier le mot de passe
+                                </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                  document.getElementById('logout-form').submit();">
-                                        {{ __('Se déconnecter') }}
-                                    </a>
+                                    {{ __('Se déconnecter') }}
+                                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
-                
+
                 <div class="dropdown ">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Warhammer 40 000
                     </a>
-
+                    <?php $factions = GetFactions(); ?>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         @foreach ($factions as $faction)
-                            @if ($faction->jeu_id == '2')
-                                <a class="dropdown-item" href="#">{{ $faction->nom }}</a>
-                            @endif
+                        @if ($faction->jeu_id == '2')
+                        <a class="dropdown-item" href="#">{{ $faction->nom }}</a>
+                        @endif
                         @endforeach
                     </div>
 
                 </div>
-                    <FORM>
-                        <SELECT onChange="document.location='posts/' + this.options[this.selectedIndex].value +'/show'">
-                            <OPTION VALUE="#" SELECTED> CHOISIR </OPTION>
-                            <?php $factions = GetFactions(); ?>
-                            @foreach ($factions as $faction)
-                                @if ($faction->jeu_id == '2')
-                                    <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
-                                @endif
-                            @endforeach
-                            >
-                        </SELECT>
-                    </FORM>
-                    
-                    <div class="dropdown ">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Age Of Sigmar
-                        </a>
+                <FORM>
+                    <SELECT onChange="document.location='posts/' + this.options[this.selectedIndex].value +'/show'">
+                        <OPTION VALUE="#" SELECTED> CHOISIR </OPTION>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            @foreach ($factions as $faction)
-                                @if ($faction->jeu_id == '1')
-                                    <a class="dropdown-item" href="#">{{ $faction->nom }}</a>
-                                @endif
-                            @endforeach
-                        </div>
+                        @foreach ($factions as $faction)
+                            @if ($faction->jeu_id == '2')
+                                <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
+                            @endif
+                        @endforeach
+                        >
+                    </SELECT>
+                </FORM>
 
+                <div class="dropdown ">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Age Of Sigmar
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        @foreach ($factions as $faction)
+                        @if ($faction->jeu_id == '1')
+                        <a class="dropdown-item" href="#">{{ $faction->nom }}</a>
+                        @endif
+                        @endforeach
                     </div>
-                
+
+                </div>
+
                 <!-- Search widget-->
                 <div class=" ms-4 container my-2 d-flex justify-content-end">
                     <form method="get" action="{{ route('search') }}">
                         <div class="d-flex justify-content-center">
                             <div class="input-group">
-                                <input class="form-control" type="search" placeholder="Entrez la recherche"
-                                    aria-describedby="button-search" name="search" />
+                                <input class="form-control" type="search" placeholder="Entrez la recherche" aria-describedby="button-search" name="search" />
                                 <button class="btn btn-primary" type="submit" id="button-search">Go!</button>
                             </div>
                         </div>
@@ -155,25 +146,25 @@
         </nav>
 
         @if (Auth::user())
-            <div class="col-md-2 text-center sidebars" id="friendsList">
-                @include ('follows-list')
-            </div>
+        <div class="col-md-2 text-center sidebars" id="friendsList">
+            @include ('follows-list')
+        </div>
         @endif
 
         <main class="container-fluid">
             <div class=" text-center">
                 @if (session()->has('message'))
-                    <p class="alert alert-success">{{ session()->get('message') }}</p>
+                <p class="alert alert-success">{{ session()->get('message') }}</p>
                 @endif
 
                 @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
             </div>
             @yield('content')
@@ -183,12 +174,6 @@
     <footer class="bg-light text-center text-lg-start">
         <div class="text-center p-3" style="background-color: white;">
             <h6 class="text-dark">© 2021 Copyright: Wargame & Paint / logo By Yamms</h6>
-            <ul>
-                <li class="text-primary d-inline mx-1"><i class="fab fa-facebook-square fa-3x"></i></li>
-                <li class="text-primary d-inline mx-1"><i class="fab fa-twitter-square fa-3x"></i></li>
-                <li class="text-warning d-inline mx-1"><i class="fab fa-github fa-3x"></i></li>
-                <li class="text-danger d-inline mx-1"><i class="fab fa-youtube fa-3x"></i></li>
-            </ul>
         </div>
     </footer>
 

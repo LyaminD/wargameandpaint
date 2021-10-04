@@ -19,16 +19,6 @@ class CommentaireController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -49,17 +39,6 @@ class CommentaireController extends Controller
         $commentaire->save();
 
         return redirect()->route('home')->with('message', 'Commentaire poster avec succès');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -93,10 +72,10 @@ class CommentaireController extends Controller
         return redirect()->route('home')->with('message', 'Commentaire modifié avec succès');
     }
 
-    /**
-     * Remove the specified resource from storage.
+    /** 
+     * Remove the specified resource from storage for user.
      *
-     * @param  int  $id
+     * @param  \app\http\Controller\Commentaire  $commentaire
      * @return \Illuminate\Http\Response
      */
     public function destroy(Commentaire $commentaire)
@@ -105,12 +84,24 @@ class CommentaireController extends Controller
         return redirect()->route('home')->with('message', 'Commentaire supprimer avec succès');
     }
 
+   /** 
+     * Remove the specified resource from storage in ADMIN session.
+     *
+     * @param  \app\http\Controller\Commentaire  $commentaire
+     * @return \Illuminate\Http\Response
+     */
     public function destroycomment(Commentaire $commentaire)
     {
         $commentaire->delete();
         return redirect()->route('admincomment')->with('message', 'Commentaire supprimée avec succès');
     }
 
+     /** 
+     * Display a listing of the resource.
+     *
+     * @param  \app\http\Controller\Commentaire  $commentaire
+     * @return \Illuminate\Http\Response
+     */
     public function commentaire(Commentaire $commentaire)
     {
         $commentaire = Commentaire::all();
