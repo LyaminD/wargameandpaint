@@ -97,3 +97,14 @@
     </div>
 </section>
 @endsection
+
+<form action="{{route('commentaires.store')}}" method="post">
+    @csrf
+    <div class="commentaire  text-center my-2">
+        <h3>Commente !</h3>
+        <div class="commentaire-input"> <input type="text" name="content" class="form-control" placeholder="Commentaire">
+            <input type="hidden" value="{{$post->id}}" name="post_id">
+            <input type="submit" value="envoyer" class="my-2 btn-success">
+        </div>
+    </div>
+</form>
