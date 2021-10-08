@@ -45,8 +45,8 @@ Route::get('/search', [App\Http\Controllers\UserController::class, 'search'])->n
 
 /*--------------------------------------- UPLOAD IMAGES ---------------------------------------------- */
 Route::post('image-upload', [App\Http\Controllers\ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
-Route::get('image', [FileController::class, 'create'])->name('image'); 
-Route::post('imageUpload', [FileController::class, 'store'])->name('imageUpload');
+Route::get('create', [App\Http\Controllers\ImageUploadController::class, 'create' ])->name('create'); 
+Route::post('storeMultipleImg', [App\Http\Controllers\ImageUploadController::class, 'storeMultipleImg'])->name('storeMultipleImg');
 
 /*--------------------------------------- FACTIONS ---------------------------------------------- */
 Route::resource('/posts', App\Http\Controllers\PostController::class)->except('index');

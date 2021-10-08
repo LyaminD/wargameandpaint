@@ -1,41 +1,30 @@
-<html lang="en">
-<head>
-  <title>Laravel 8 Multiple Image Upload Example - ItSolutionStuff.com</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
   
 <div class="container lst">
 
   
-<h3 class="well">Laravel 8 Multiple Image Upload - ItSolutionStuff.com</h3>
+<h3 class="well">Envoi plusieurs images !</h3>
  
-<form method="post" action="{{route('imageUpload')}}" enctype="multipart/form-data">
+<form method="post" action="{{route('storeMultipleImg')}}" enctype="multipart/form-data">
     @csrf
-
-
-    <div class="user-image mb-3 text-center">
-                <div class="imgPreview"> dd</div>
-            </div>  
-
-
     <div class="input-group hdtuto control-group lst increment" >
       <input type="file" name="filenames[]" class="myfrm form-control">
       <div class="input-group-btn"> 
-        <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>Add</button>
+        <button class="btn btn-success" type="button"><i class="fldemo glyphicon glyphicon-plus"></i>Ajoute une autre image</button>
       </div>
     </div>
     <div class="clone hide">
       <div class="hdtuto control-group lst input-group" style="margin-top:10px">
         <input type="file" name="filenames[]" class="myfrm form-control">
         <div class="input-group-btn"> 
-          <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i> Remove</button>
+          <button class="btn btn-danger" type="button"><i class="fldemo glyphicon glyphicon-remove"></i>Enlever l'image</button>
         </div>
       </div>
     </div>
   
-    <button type="submit" class="btn btn-success" style="margin-top:10px">Submit</button>
+    <button type="submit" class="btn btn-success" style="margin-top:10px">Post les images</button>
   
 </form>        
 </div>
@@ -82,4 +71,4 @@
     </script>
   
 </body>
-</html>
+@endsection

@@ -56,16 +56,29 @@
                     @if (Auth::user()->can('update', $post))
                     <a href="{{route('posts.edit',$post)}}">
                         <li class="tag__item"><i class="fas fa-tag mr-2"></i>Modifier le post</li>
-                        @endif
-                        @if (Auth::user()->can('delete', $post))
-                        <form action="{{route('posts.destroy',$post)}}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value="Supprimer" class="tag__item">
-                        </form>
-                        @endif
+                    </a>
+                    @endif
+                    @if (Auth::user()->can('delete', $post))
+                    <form action="{{route('posts.destroy',$post)}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <input type="submit" value="Supprimer" class="tag__item">
+                    </form>
+                    @endif
+
                 </ul>
+                <form action="{{route('commentaires.store')}}" method="post">
+                    @csrf
+                    <div class="commentaire  text-center my-2">
+                        <h3>Commente !</h3>
+                        <div class="commentaire-input"> <input type="text" name="content" class="form-control" placeholder="Commentaire">
+                            <input type="hidden" value="{{$post->id}}" name="post_id">
+                            <input type="submit" value="envoyer" class="my-2 btn-success">
+                        </div>
+                    </div>
+                </form>
             </div>
+
         </article>
         @foreach($post->commentaires as $commentaire)
         <article class="postcard dark blue">
@@ -97,14 +110,3 @@
     </div>
 </section>
 @endsection
-
-<form action="{{route('commentaires.store')}}" method="post">
-    @csrf
-    <div class="commentaire  text-center my-2">
-        <h3>Commente !</h3>
-        <div class="commentaire-input"> <input type="text" name="content" class="form-control" placeholder="Commentaire">
-            <input type="hidden" value="{{$post->id}}" name="post_id">
-            <input type="submit" value="envoyer" class="my-2 btn-success">
-        </div>
-    </div>
-</form>

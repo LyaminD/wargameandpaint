@@ -30,6 +30,6 @@ class Post extends Model
     }
     public function faction()
     {
-        return $this->belongsTo(Jeux::class);
+        return $this->belongsTo(Faction::class);
     }
 }

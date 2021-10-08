@@ -136,11 +136,10 @@ class PostController extends Controller
     * @param  \app\http\Controller\Post  $post
     * @return \Illuminate\Http\Response
     */
-    public function show()
+    public function show($faction_id)
     {
-        $posts = Post::where( 'faction_id', $faction_id)->sortByDesc('created_at');
-        $posts->load('images');
-        $factions = Faction::all();
-        return view('faction', ['posts' => $posts, 'factions' => $factions] );
+        $posts = Post::where( 'faction_id', $faction_id)->latest()->get();
+        $posts->load('images','faction');
+        return view('faction', ['posts' => $posts] );
     }
 }

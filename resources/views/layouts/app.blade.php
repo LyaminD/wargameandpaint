@@ -89,47 +89,29 @@
                     </ul>
                 </div>
 
-                <div class="dropdown ">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Warhammer 40 000
-                    </a>
-                    <?php $factions = GetFactions(); ?>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <?php $factions = GetFactions(); ?>
+                <FORM>
+                    <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle">
+                        <OPTION VALUE="#" SELECTED>Warhammer 40 000 </OPTION>
                         @foreach ($factions as $faction)
                         @if ($faction->jeu_id == '2')
-                        <a class="dropdown-item" href="#">{{ $faction->nom }}</a>
+                        <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
                         @endif
-                        @endforeach
-                    </div>
-
-                </div>
-                <FORM>
-                    <SELECT onChange="document.location='posts/' + this.options[this.selectedIndex].value +'/show'">
-                        <OPTION VALUE="#" SELECTED> CHOISIR </OPTION>
-
-                        @foreach ($factions as $faction)
-                            @if ($faction->jeu_id == '2')
-                                <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
-                            @endif
                         @endforeach
                         >
                     </SELECT>
                 </FORM>
-
-                <div class="dropdown ">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Age Of Sigmar
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <FORM>
+                    <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle">
+                        <OPTION VALUE="#" SELECTED> Age Of Sigmar </OPTION>
                         @foreach ($factions as $faction)
                         @if ($faction->jeu_id == '1')
-                        <a class="dropdown-item" href="#">{{ $faction->nom }}</a>
+                        <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
                         @endif
                         @endforeach
-                    </div>
-
-                </div>
+                        >
+                    </SELECT>
+                </FORM>
 
                 <!-- Search widget-->
                 <div class=" ms-4 container my-2 d-flex justify-content-end">

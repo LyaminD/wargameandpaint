@@ -16,10 +16,10 @@ class Faction extends Model
 
     public function jeu()
     {
-        return $this->belongsTo(Jeux::class);
+        return $this->belongsTo(Jeu::class);
     }
     public function posts()
     {
-        return $this->hasMany(Jeux::class);
+        return $this->hasMany(Jeu::class);
     }
 }

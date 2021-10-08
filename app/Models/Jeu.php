@@ -14,6 +14,8 @@ class Jeu extends Model
        
     ];
 
+    protected $table = 'jeux';
+
     public function factions()
     {
         return $this->hasMany(Faction::class);

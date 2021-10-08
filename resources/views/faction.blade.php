@@ -5,7 +5,12 @@
 <section class="">
     <div class="container py-4">
         <h1 class="h1 text-center" id="pageHeaderTitle">Fil d'actualité</h1>
-        @foreach ($factions->posts as $post)
+        @if( count($posts) == 0)
+        <p>Pas de posts</p>
+        @else
+        <div>{{$posts[0]->faction->nom}}</div>
+
+        @foreach ($posts as $post)
         <article class="postcard dark blue">
 
             <a class="postcard__img_link" href="{{route('profil',$post->user_id)}}"> @foreach ($post->images as $image)
@@ -64,6 +69,7 @@
         </article>
         @endforeach
         @endforeach
+        @endif
     </div>
 </section>
 @endsection
