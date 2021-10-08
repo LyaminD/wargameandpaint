@@ -25,19 +25,17 @@ class ImageUploadController extends Controller
         $request->image->move(public_path('images'), $imageName);
 
         if ($request->post) {
-            $post_id = session() -> get('post_id');
-            $this->store($imageName, $post_id); 
+            $post_id = session()->get('post_id');
+            $this->store($imageName, $post_id);
             return redirect()->route('home')
-            ->with('success', 'Image envoyée !')
-            ->with('image', $imageName);
-            
+                ->with('success', 'Image envoyée !')
+                ->with('image', $imageName);
         } else {
             $this->store($imageName);
-            return redirect() -> route('editaccount')
-            ->with('success', 'Image envoyée !')
-            ->with('image', $imageName);
+            return redirect()->route('editaccount')
+                ->with('success', 'Image envoyée !')
+                ->with('image', $imageName);
         }
-
     }
 
     public function store($imageName, $post_id = null)
