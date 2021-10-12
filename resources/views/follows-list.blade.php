@@ -1,14 +1,13 @@
-<h3 class="mb-3"><b>Abonnements</b></h3>
-
-<ul class="list-unstyled">
+<h3 class="mb-3 text-center"><b>Abonnements</b></h3>
+<div class="container horizontal-scrollable text-center">
+<ul class="list-unstyled d-flex justify-content-center">
 
     @forelse (auth()->user()->follows as $user)
 
-    <li>
+    <li class=" flex-column mx-2">
 
         <a href="{{ route('profil', $user) }}">
-            <img src="{{ asset("images/$user->imageprofil") }}" alt="" height="80" class="rounded-circle">
-
+            <img src="{{ asset("images/$user->imageprofil") }}" alt="image de profil" height="80" class="rounded-circle">
             <p class="text-dark">{{ $user->pseudo }}</p>
         </a>
 
@@ -20,3 +19,4 @@
     @endforelse
 
 </ul>
+</div>

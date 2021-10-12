@@ -6,7 +6,7 @@
     <div class="container py-4">
         <h1 class="h1 text-center" id="pageHeaderTitle">Fil d'actualité</h1>
         @if( count($posts) == 0)
-        <p>Pas de posts</p>
+        <p>il n'y a pas de posts sur cette faction pour le moment !</p>
         @else
         <div>{{$posts[0]->faction->nom}}</div>
 

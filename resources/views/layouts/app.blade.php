@@ -25,7 +25,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm d-flex justify-content-between">
+        <nav class="navbar navbar-expand-md menu navbar-light bg-white shadow-sm d-flex justify-content-between">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('images/wargame.png') }}" class="logo" alt="logo">
@@ -34,7 +34,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         @if (auth()->user() && auth()->user()->role_id == 2)
                         <a class="nav-link" href="{{ route('admin.index') }}">Administration</a>
@@ -49,8 +49,6 @@
                             </div>
                         </li>
                         @endif
-                    </ul>
-                    <ul class="navbar-nav mr-auto">
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         @guest
@@ -90,7 +88,7 @@
                 </div>
 
                 <?php $factions = GetFactions(); ?>
-                <FORM>
+                <FORM class="mx-3">
                     <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle">
                         <OPTION VALUE="#" SELECTED>Warhammer 40 000 </OPTION>
                         @foreach ($factions as $faction)
@@ -128,7 +126,7 @@
         </nav>
 
         @if (Auth::user())
-        <div class="col-md-2 text-center sidebars" id="friendsList">
+        <div class="col-md-2 d-flex flex-column justify-content-center mx-auto" id="friendsList">
             @include ('follows-list')
         </div>
         @endif
@@ -154,7 +152,7 @@
     </div>
 
     <footer class="bg-light text-center text-lg-start">
-        <div class="text-center p-3" style="background-color: white;">
+        <div class="text-center p-3" style="background-color: white">
             <h6 class="text-dark">© 2021 Copyright: Wargame & Paint / logo By Yamms</h6>
         </div>
     </footer>

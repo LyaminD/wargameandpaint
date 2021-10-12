@@ -7,12 +7,17 @@ body {
     background: #EDEC94;
     color: #fff;
 }
+
+menu{
+flex-direction: row;
+}
+
 h1{
     text-align: center;
 }
 .logo {
-    width: 12%;
-    height: 12%;
+    width: 40%;
+    height: 40%;
 }
 
 p {
@@ -48,7 +53,6 @@ body {
 	background: #110f16;
 }
 
-
 .light {
 	background: #f3f5f7;
 }
@@ -69,7 +73,6 @@ a, a:hover {
 .postcard {
   flex-wrap: wrap;
   display: flex;
-  
   box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
   border-radius: 10px;
   margin: 0 0 2rem 0;
@@ -391,6 +394,14 @@ a, a:hover {
 			transparent 50%
 		);
 	}
+
+  
+}
+@media screen and (max-width: 669px){
+.banner{
+  height: 30vh;
+  width: 70%;
+}
 }
 
 hr {

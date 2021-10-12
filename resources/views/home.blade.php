@@ -25,6 +25,7 @@
                                     <button class="btn-success">Envoyer</button>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -78,8 +79,8 @@
                     </div>
                 </form>
             </div>
-
         </article>
+        
         @foreach($post->commentaires as $commentaire)
         <article class="postcard dark blue">
             <a class="postcard__img_link" href="#">

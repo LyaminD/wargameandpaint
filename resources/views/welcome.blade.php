@@ -13,15 +13,14 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-
     <body>
-        <div id="loginBackground" class="bg-dark text-center">
+        <div id="loginBackground" class="bg-dark text-center mb-5">
             <h1>Bienvenu sur Wargame & Paint ! ! !</h1>
             <p>Wargame & Paint est un site de partage de photos sur l'univers de Games Workshop !</p>
             <p>Partage tes réalisations avec la communauté !</p>
             <div class="container">
                 <div class="tribunal text-center my-5">
-                    <img src="{{ asset('images/wargame.png') }}">
+                    <img src="{{ asset('images/wargame.png') }}" class="banner">
                 </div>
             </div>
             <div class="container d-flex text-center">
@@ -288,7 +287,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ route('login') }}" class="btn btn-primary" role="button" data-bs-toggle="button">Se connecter</a>
+                        <a href="{{ route('login') }}" class="btn btn-primary mb-5" role="button" data-bs-toggle="button">Se connecter</a>
                     </div>
                 </div>
             </div>
