@@ -126,12 +126,12 @@
         </nav>
 
         @if (Auth::user())
-        <div class="col-md-2 d-flex flex-column justify-content-center mx-auto" id="friendsList">
+        <div class="col-md-2 d-flex flex-column justify-content-center mx-auto mt-3" id="friendsList">
             @include ('follows-list')
         </div>
         @endif
 
-        <main class="container-fluid">
+        <main class="container-fluid mb-5">
             <div class=" text-center">
                 @if (session()->has('message'))
                 <p class="alert alert-success">{{ session()->get('message') }}</p>
@@ -151,7 +151,7 @@
         </main>
     </div>
 
-    <footer class="bg-light text-center text-lg-start">
+    <footer class="bg-light text-center text-lg-start mt-5">
         <div class="text-center p-3" style="background-color: white">
             <h6 class="text-dark">© 2021 Copyright: Wargame & Paint / logo By Yamms</h6>
         </div>

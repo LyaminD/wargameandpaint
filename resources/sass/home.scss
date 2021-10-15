@@ -3,9 +3,20 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
-    font-family: 'Cormorant', serif;
-    background: #EDEC94;
     color: #fff;
+    font-family: "Baloo 2", cursive;
+    font-size: 16px;
+    color: #ffffff;
+    text-rendering: optimizeLegibility;
+    font-weight: initial;
+    background: #654ea3;
+    background: linear-gradient(to right, #e96443, #904e95);
+    min-height: 100vh;
+    overflow-x: hidden
+}
+
+footer{
+bottom: 0;
 }
 
 menu{
@@ -15,6 +26,7 @@ flex-direction: row;
 h1{
     text-align: center;
 }
+
 .logo {
     width: 40%;
     height: 40%;
@@ -24,6 +36,13 @@ p {
     font-size: 20px;
     line-height: 33px !important;
     color: #fff
+}
+
+@media screen and (max-width: 969px){
+.resetpass{
+height: 50vh;
+width: auto;
+}
 }
 
 .small {
@@ -39,15 +58,6 @@ $main-red: #bd150b !default;
 $main-red-rgb-015: rgba(189, 21, 11, 0.1) !default;
 $main-blue: #0076bd !default;
 $main-blue-rgb-015: rgba(0, 118, 189, 0.1) !default;
-
-/* This pen */
-body {
-	font-family: "Baloo 2", cursive;
-	font-size: 16px;
-	color: #ffffff;
-	text-rendering: optimizeLegibility;
-	font-weight: initial;
-}
 
 .dark {
 	background: #110f16;
@@ -394,7 +404,6 @@ a, a:hover {
 			transparent 50%
 		);
 	}
-
   
 }
 @media screen and (max-width: 669px){
@@ -429,13 +438,6 @@ hr {
     background-repeat: no-repeat
 }
 
-body {
-    background: #654ea3;
-    background: linear-gradient(to right, #e96443, #904e95);
-    min-height: 100vh;
-    overflow-x: hidden
-}
-
 @media (max-width: 479px) {
     p {
         padding: 0 !important
@@ -444,4 +446,19 @@ body {
     .img-1 {
         margin-right: 0 !important
     }
+}
+
+.post{
+display: flex;
+border: solid #110f16;
+border-radius: 10px;
+}
+
+.blabla{
+
+}
+
+.imagepost{
+  height: 50%;
+  width: 50%;
 }

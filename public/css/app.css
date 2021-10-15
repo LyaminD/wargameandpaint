@@ -10008,9 +10008,20 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  font-family: "Cormorant", serif;
-  background: #EDEC94;
   color: #fff;
+  font-family: "Baloo 2", cursive;
+  font-size: 16px;
+  color: #ffffff;
+  text-rendering: optimizeLegibility;
+  font-weight: initial;
+  background: #654ea3;
+  background: linear-gradient(to right, #e96443, #904e95);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+footer {
+  bottom: 0;
 }
 
 menu {
@@ -10032,17 +10043,14 @@ p {
   color: #fff;
 }
 
+@media screen and (max-width: 969px) {
+  .resetpass {
+    height: 50vh;
+    width: auto;
+  }
+}
 .small {
   letter-spacing: 0.5px !important;
-}
-
-/* This pen */
-body {
-  font-family: "Baloo 2", cursive;
-  font-size: 16px;
-  color: #ffffff;
-  text-rendering: optimizeLegibility;
-  font-weight: initial;
 }
 
 .dark {
@@ -10383,13 +10391,6 @@ hr {
   background-repeat: no-repeat;
 }
 
-body {
-  background: #654ea3;
-  background: linear-gradient(to right, #e96443, #904e95);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
 @media (max-width: 479px) {
   p {
     padding: 0 !important;
@@ -10398,4 +10399,14 @@ body {
   .img-1 {
     margin-right: 0 !important;
   }
+}
+.post {
+  display: flex;
+  border: solid #110f16;
+  border-radius: 10px;
+}
+
+.imagepost {
+  height: 50%;
+  width: 50%;
 }

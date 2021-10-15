@@ -3,13 +3,13 @@
 @section('content')
 <h2 class="text-center mt-3">Bonjour {{$user->pseudo}}, modifie ici tes informations !</h2>
 
-<div class="container">
+<div class="container text-dark">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Modifiez vos informations') }}</div>
 
-                <div class="card-body">
+                <div class="card-body ">
                     <form method="POST" action="{{ route('updateaccount') }}">
                         @csrf
 
@@ -107,8 +107,8 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                        <div class="form-group row">
+                        <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Photo de profil') }}</label>
                         <div class="col-md-6">
                             @if(Session::get('image'))
                             <input type="text" class="form-control" name="imageprofil" id="image" value="{{Session::get('image')}}">
@@ -117,8 +117,9 @@
                             @endif
                             <button class="button is-link btn-success" type="submit">Envoyer</button>
                         </div>
+                    </div>
                     </form>
-                    <div class="form-group row">
+                    <div class="">
                         <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">

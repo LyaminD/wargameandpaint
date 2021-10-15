@@ -10,8 +10,7 @@
                 <div class="media align-items-end profile-head">
                     <div class="profile mr-3"><img src="{{ asset("images/$user->imageprofil") }}" width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-outline-dark btn-sm btn-block">Changez la photo de profil</a></div>
                     <div class="media-body mb-5 text-light">
-                        <h4 class="mt-0 mb-0">{{ $user->pseudo}}</h4>
-                        <p class="small mb-4 text-light"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p>
+                        <h4 class="mt-0 mb-4">{{ $user->pseudo}}</h4>
                     </div>
                 </div>
             </div>
@@ -103,10 +102,10 @@
                 ?>
                 @endforeach
             </div>
-            <div class="p-2">
+            <div class="p-2 ">
                 <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <div class="col-md-12 my-2">
                             <input type="file" name="image" class="form-control">
                         </div>

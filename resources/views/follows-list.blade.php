@@ -15,7 +15,6 @@
 
     @empty
     <p>Aucun abonnement</p>
-
     @endforelse
 
 </ul>
