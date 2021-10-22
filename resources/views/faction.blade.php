@@ -4,12 +4,11 @@
 
 <section class="">
     <div class="container py-4">
-        <h1 class="h1 text-center" id="pageHeaderTitle">Fil d'actualité</h1>
+        <h2 class="h1 text-center" id="pageHeaderTitle">Fil d'actualité</h2>
         @if( count($posts) == 0)
         <p>il n'y a pas de posts sur cette faction pour le moment !</p>
         @else
         <div>{{$posts[0]->faction->nom}}</div>
-
         @foreach ($posts as $post)
         <article class="postcard dark blue">
 
@@ -19,12 +18,7 @@
 
             <div class="postcard__text">
                 <h3 class="postcard__title blue"><img src="images/{{ $post->user->imageprofil }}" width="50" class="rounded-circle"><a href="#">{{ $post->user->pseudo}}</a></h3>
-                <h1 class="postcard__title blue"><a href="#">{{ $post->titre}}</a></h1>
-                <div class="postcard__subtitle small">
-                    <time datetime="2020-05-25 12:00:00">
-                        <i class="fas fa-calendar-alt mr-2"></i>
-                    </time>
-                </div>
+                <h2 class="postcard__title blue">{{ $post->titre}}</h2>
                 <div class="postcard__bar"></div>
                 <div class="postcard__preview-txt">{{ $post->content}}</div>
                 <ul class="postcard__tagbox">
@@ -44,12 +38,9 @@
         </article>
         @foreach($post->commentaires as $commentaire)
         <article class="postcard dark blue">
-            <a class="postcard__img_link" href="#">
-                <img class="postcard__img" src="" alt="Image Title" />
-            </a>
             <div class="postcard__text">
                 <h3 class="postcard__title blue"><img src="images/{{ $commentaire->user->imageprofil }}" width="50" class="rounded-circle"><a href="{{route('profil',$commentaire->user_id)}}">{{ $commentaire->user->pseudo}}</a></h3>
-                <h1 class="postcard__title blue">Les commentaires</h1>
+                <h2 class="postcard__title blue">Les commentaires</h2>
                 <div class="postcard__bar"></div>
                 <div class="postcard__preview-txt">{{ $commentaire->content}}</div>
                 <ul class="postcard__tagbox">

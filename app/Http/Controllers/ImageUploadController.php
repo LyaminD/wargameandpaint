@@ -69,7 +69,7 @@ class ImageUploadController extends Controller
     {
         $this->validate($request, [
             'filenames' => 'required',
-            'filenames.*' =>'mimes:jpeg,jpg,png'
+            'filenames.*' => 'mimes:jpeg,jpg,png'
         ]);
 
         if ($request->hasfile('filenames')) {

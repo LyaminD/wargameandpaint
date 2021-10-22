@@ -10032,9 +10032,14 @@ h1 {
   text-align: center;
 }
 
+.banner {
+  width: 50%;
+  height: auto;
+}
+
 .logo {
-  width: 40%;
-  height: 40%;
+  width: 70%;
+  height: 70%;
 }
 
 p {
@@ -10061,7 +10066,8 @@ p {
   background: #f3f5f7;
 }
 
-a, a:hover {
+a,
+a:hover {
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 }
@@ -10096,7 +10102,8 @@ a, a:hover {
 .postcard a {
   color: inherit;
 }
-.postcard h1, .postcard .h1 {
+.postcard h1,
+.postcard .h1 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
@@ -10109,7 +10116,7 @@ a, a:hover {
 }
 .postcard .postcard__img {
   max-height: 180px;
-  width: 100%;
+  width: 300%;
   -o-object-fit: cover;
      object-fit: cover;
   position: relative;
@@ -10118,7 +10125,6 @@ a, a:hover {
   display: contents;
 }
 .postcard .postcard__bar {
-  width: 50px;
   height: 10px;
   margin: 10px 0;
   border-radius: 5px;
@@ -10172,9 +10178,6 @@ a, a:hover {
   opacity: 1;
   border-radius: 10px;
 }
-.postcard:hover .postcard__bar {
-  width: 100px;
-}
 
 @media screen and (min-width: 769px) {
   .postcard {
@@ -10204,22 +10207,11 @@ a, a:hover {
     height: 130%;
     width: 55px;
   }
-  .postcard:hover .postcard__img {
-    transform: scale(1.1);
-  }
   .postcard:nth-child(2n+1) {
     flex-direction: row;
   }
   .postcard:nth-child(2n+0) {
     flex-direction: row-reverse;
-  }
-  .postcard:nth-child(2n+1) .postcard__text::before {
-    left: -12px !important;
-    transform: rotate(4deg);
-  }
-  .postcard:nth-child(2n+0) .postcard__text::before {
-    right: -12px !important;
-    transform: rotate(-4deg);
   }
 }
 @media screen and (min-width: 1024px) {
@@ -10234,10 +10226,6 @@ a, a:hover {
     top: -20%;
     height: 130%;
     width: 55px;
-  }
-
-  .postcard.dark .postcard__text:before {
-    background: #18151f;
   }
 
   .postcard.light .postcard__text:before {
@@ -10365,6 +10353,22 @@ a, a:hover {
     height: 30vh;
     width: 70%;
   }
+
+  .logo {
+    text-align: center;
+  }
+
+  .choixfaction {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .faction {
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+  }
 }
 hr {
   background-color: #757575;
@@ -10391,22 +10395,15 @@ hr {
   background-repeat: no-repeat;
 }
 
-@media (max-width: 479px) {
-  p {
-    padding: 0 !important;
-  }
-
-  .img-1 {
-    margin-right: 0 !important;
-  }
+.card {
+  height: auto;
 }
+
+.commentaire {
+  flex-direction: column;
+  justify-content: center;
+}
+
 .post {
-  display: flex;
-  border: solid #110f16;
-  border-radius: 10px;
-}
-
-.imagepost {
-  height: 50%;
-  width: 50%;
+  opacity: 0.9;
 }

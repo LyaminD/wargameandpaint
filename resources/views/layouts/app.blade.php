@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}" />
 
 </head>
 
@@ -28,7 +29,7 @@
         <nav class="navbar navbar-expand-md menu navbar-light bg-white shadow-sm d-flex justify-content-between">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('images/wargame.png') }}" class="logo" alt="logo">
+                    <img src="{{ asset('images/logo.png') }}" class="logo" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -88,29 +89,30 @@
                 </div>
 
                 <?php $factions = GetFactions(); ?>
-                <FORM class="mx-3">
-                    <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle">
-                        <OPTION VALUE="#" SELECTED>Warhammer 40 000 </OPTION>
-                        @foreach ($factions as $faction)
-                        @if ($faction->jeu_id == '2')
-                        <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
-                        @endif
-                        @endforeach
-                        >
-                    </SELECT>
-                </FORM>
-                <FORM>
-                    <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle">
-                        <OPTION VALUE="#" SELECTED> Age Of Sigmar </OPTION>
-                        @foreach ($factions as $faction)
-                        @if ($faction->jeu_id == '1')
-                        <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
-                        @endif
-                        @endforeach
-                        >
-                    </SELECT>
-                </FORM>
-
+                <div class="d-flex choixfaction d-flex justify-content-center">
+                    <FORM class="mx-3">
+                        <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle faction">
+                            <OPTION VALUE="#" SELECTED>Warhammer 40 000 </OPTION>
+                            @foreach ($factions as $faction)
+                            @if ($faction->jeu_id == '2')
+                            <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
+                            @endif
+                            @endforeach
+                            >
+                        </SELECT>
+                    </FORM>
+                    <FORM>
+                        <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle faction">
+                            <OPTION VALUE="#" SELECTED> Age Of Sigmar </OPTION>
+                            @foreach ($factions as $faction)
+                            @if ($faction->jeu_id == '1')
+                            <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
+                            @endif
+                            @endforeach
+                            >
+                        </SELECT>
+                    </FORM>
+                </div>
                 <!-- Search widget-->
                 <div class=" ms-4 container my-2 d-flex justify-content-end">
                     <form method="get" action="{{ route('search') }}">

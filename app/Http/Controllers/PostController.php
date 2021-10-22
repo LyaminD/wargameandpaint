@@ -39,8 +39,11 @@ class PostController extends Controller
             'faction_id' => $request->input('faction'),
             'titre' => $request->input('titre'),
             
+            
         ]);
-        session() -> put('post_id' , $insert->id) ;
+        session() -> put('post_id' , $insert->id);
+        
+        
 
         return view('create')->with('message', 'Post créer avec succès, ajouter votre image');
     }

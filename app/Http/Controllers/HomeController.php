@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::all()->sortByDesc('created_at');
+        $posts = Post::latest()->paginate(10);
         $posts->load('images');
         $factions = Faction::all();
         return view('home', ['posts' => $posts, 'factions' => $factions] );

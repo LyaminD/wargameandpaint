@@ -8,8 +8,6 @@
     <div class="posts container my-5 justify-content-center">
         <h3>Modifie ton post en dessous</h3>
         <div class="posts-input"> <input type="text" value="{{$post->content}}" name="content" class="form-control" placeholder="Post">
-            <h3>Modifie ton Tags</h3>
-            <input type="text" name="tags" class="form-control" value="{{$post->tags}}" placeholder="Tags">
             <h3>Modifie ton image</h3>
             @if(Session::get('image'))
             <input type="text" class="form-control" name="image" id="image" value="{{Session::get('image')}}">
