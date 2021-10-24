@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 
 class UserController extends Controller
 {
@@ -33,10 +34,12 @@ class UserController extends Controller
      * @param  \app\http\Controller\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function profil(User $user)
+    public function profil(User $user, Post $posts)
     {
-        $user->load('posts.images','images');
-        return view('user.profil', compact('user'));
+        $posts= Post::where('user_id', $user->id)->latest()->paginate(1);
+        $posts->load('images');
+        $user->load('images');
+        return view('user.profil', compact('user','posts'));
     }
 
     /**

@@ -62,5 +62,8 @@
         @endforeach
         @endif
     </div>
+    <div class="col-md-3 offset-md-5 ">
+        {{ $posts->links() }}
+    </div>
 </section>
 @endsection

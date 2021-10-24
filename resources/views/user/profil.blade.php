@@ -127,7 +127,7 @@
 <section class="dark">
     <div class="container py-4">
         <h1 class="h1 text-center" id="pageHeaderTitle">Mes derniers posts</h1>
-        @foreach ($user->posts as $post)
+        @foreach ($posts as $post)
         <article class="postcard dark blue">
 
             <a class="postcard__img_link" href="{{route('profil',$post->user_id)}}"> @foreach ($post->images as $image)
@@ -185,6 +185,9 @@
         </article>
         @endforeach
         @endforeach
+    </div>
+    <div class="col-md-3 offset-md-5 ">
+        {{ $posts->links() }}
     </div>
 </section>
 @endsection

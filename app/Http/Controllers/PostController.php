@@ -141,7 +141,7 @@ class PostController extends Controller
     */
     public function show($faction_id)
     {
-        $posts = Post::where( 'faction_id', $faction_id)->latest()->get();
+        $posts = Post::where( 'faction_id', $faction_id)->latest()->paginate(10);
         $posts->load('images','faction');
         return view('faction', ['posts' => $posts] );
     }
