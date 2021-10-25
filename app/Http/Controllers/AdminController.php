@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 class AdminController extends Controller
 {
     /**
@@ -15,6 +14,4 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
-
 }
-

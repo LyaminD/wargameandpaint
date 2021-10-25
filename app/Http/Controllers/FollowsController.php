@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowsController extends Controller
 {
-    public function store (User $user) {
+    public function store(User $user)
+    {
         Auth::user()->toggleFollow($user);
 
         return back();

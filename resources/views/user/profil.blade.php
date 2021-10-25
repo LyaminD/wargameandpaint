@@ -19,12 +19,6 @@
                     <li class="list-inline-item">
                         <h5 class="font-weight-bold mb-0 d-block text-dark">{{count($user->images)}}</h5><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
                     </li>
-                    <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block text-dark">745</h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
-                    </li>
-                    <li class="list-inline-item">
-                        <h5 class="font-weight-bold mb-0 d-block text-dark">340</h5><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
-                    </li>
                 </ul>
             </div>
             <div class="px-4 py-3">
@@ -124,7 +118,7 @@
     </div>
 </div>
 
-<section class="dark">
+<section class="">
     <div class="container py-4">
         <h1 class="h1 text-center" id="pageHeaderTitle">Mes derniers posts</h1>
         @foreach ($posts as $post)
@@ -134,56 +128,73 @@
                 <img class="postcard__img" src="{{ asset("images/$image->name") }}" alt="Image Title" />
                 @endforeach</a>
 
-
             <div class="postcard__text">
-                <h3 class="postcard__title blue"><img src="{{ asset("images/$user->imageprofil") }}" width="50" class="rounded-circle"><a href="#">{{ $post->user->pseudo}}</a></h3>
-                <h1 class="postcard__title blue"><a href="#">{{ $post->titre}}</a></h1>
-                <div class="postcard__subtitle small">
-                    <time datetime="2020-05-25 12:00:00">
-                        <i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
-                    </time>
-                </div>
+                <h3 class="postcard__title blue mx-3 text-center"><img src="images/{{ $post->user->imageprofil }}" class="rounded-circle mx-3"><a href="#">{{ $post->user->pseudo}}</a></h3>
+                <h2 class="postcard__title blue text-center">{{ $post->titre}}</h2>
                 <div class="postcard__bar"></div>
-                <div class="postcard__preview-txt">{{ $post->content}}</div>
-                <ul class="postcard__tagbox">
+                <div class="postcard__preview-txt text-center">{{ $post->content}}</div>
+                <ul class="postcard__tagbox justify-content-center">
                     @if (Auth::user()->can('update', $post))
                     <a href="{{route('posts.edit',$post)}}">
-                        <li class="tag__item"><i class="fas fa-tag mr-2"></i>Modifier le post</li>
-                        @endif
-                        @if (Auth::user()->can('delete', $post))
-                        <form action="{{route('posts.destroy',$post)}}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value="Supprimer" class="tag__item">
-                        </form>
-                        @endif
+                        <input type="submit" value="Modifier le post" class="tag__item text-white">
+                    </a>
+                    @endif
+                    @if (Auth::user()->can('delete', $post))
+                    <form action="{{route('posts.destroy',$post)}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <input type="submit" value="Supprimer" class="tag__item text-white">
+                    </form>
+                    @endif
                 </ul>
+
+                <form action="{{route('commentaires.store')}}" method="post" class="">
+                    @csrf
+
+                    <div class="commentaire text-center my-2 ">
+                        <div class="commentaire-input champcommentaire ">
+                            <h3>Commente !</h3>
+                            <input type="text" name="content" class="form-control" placeholder="Commentaire">
+                            <input type="hidden" value="{{$post->id}}" name="post_id" class="">
+                            <input type="submit" value="envoyer" class="my-2 btn-success">
+                        </div>
+                    </div>
+                </form>
+                <div class="col text-center">
+                    <a class="btn btn-info mb-2 mt-2" onclick="document.getElementById('formulairecommentaire{{$post->id}}').style.display = 'block'">Afficher les commentaires
+                    </a>
+                    <button class="btn btn-danger" onclick="document.getElementById('formulairecommentaire{{$post->id}}').style.display = 'none'">
+                        Cacher les commentaires
+                    </button>
+                </div>
             </div>
         </article>
-        @foreach($post->commentaires as $commentaire)
-        <article class="postcard dark blue">
-            <a class="postcard__img_link" href="#">
-                <img class="postcard__img" src="" alt="Image Title" />
-            </a>
+        <article class="postcard dark blue" id="formulairecommentaire{{$post->id}}" style="display:none">
+            <h2 class="postcard__title blue text-center">Les commentaires</h2>
+            @foreach($post->commentaires as $commentaire)
             <div class="postcard__text">
-                <h3 class="postcard__title blue"><img src="images/{{ $commentaire->user->imageprofil }}" width="50" class="rounded-circle"><a href="{{route('profil',$commentaire->user_id)}}">{{ $commentaire->user->pseudo}}</a></h3>
-                <h1 class="postcard__title blue">Les commentaires</h1>
+                <h3 class="postcard__title blue"><img src="images/{{ $commentaire->user->imageprofil }}" width="50" class="rounded-circle">
+                    <a href="{{route('profil',$commentaire->user_id)}}">{{ $commentaire->user->pseudo}}</a>
+                </h3>
                 <div class="postcard__bar"></div>
                 <div class="postcard__preview-txt">{{ $commentaire->content}}</div>
                 <ul class="postcard__tagbox">
                     @if (Auth::user()->can('update', $commentaire))
                     <a href="{{route('commentaires.edit',$commentaire)}}">
-                        <li class="tag__item"><i class="fas fa-tag mr-2"></i>Modifier le commentaire</li>
+                        <input type="submit" value="Modifier le commentaire" class="tag__item text-white">
                         @endif
+                        @if (Auth::user()->can('delete', $commentaire))
                         <form action="{{route('commentaires.destroy',$commentaire)}}" method="POST">
                             @csrf
                             @method('delete')
-                            <input type="submit" value="Supprimer" class="tag__item">
+                            <input type="submit" value="Supprimer" class="tag__item text-white">
                         </form>
+                        @endif
                 </ul>
             </div>
+            @endforeach
         </article>
-        @endforeach
+        <hr class="mt-5 mb-5">
         @endforeach
     </div>
     <div class="col-md-3 offset-md-5 ">

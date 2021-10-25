@@ -33,23 +33,18 @@ class PostController extends Controller
         ]);
 
         $user = Auth::user();
-         $insert = Post::create([
+        $insert = Post::create([
             'content' => $request->input('content'),
             'user_id' => $user->id,
             'faction_id' => $request->input('faction'),
             'titre' => $request->input('titre'),
-            
-            
-        ]);
-        session() -> put('post_id' , $insert->id);
-        
-        
 
+        ]);
+        session()->put('post_id', $insert->id);
         return view('create')->with('message', 'Post créer avec succès, ajouter votre image');
     }
 
-    
-/** 
+    /** 
      * Display a listing of the resource.
      *
      * @param  \app\http\Controller\Post  $post
@@ -60,9 +55,8 @@ class PostController extends Controller
         $posts = Post::all()->sortByDesc('created_at');
         $posts->load('images');
         $factions = Faction::all();
-        return view('faction', ['posts' => $posts, 'factions' => $factions] );
+        return view('faction', ['posts' => $posts, 'factions' => $factions]);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -108,7 +102,7 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('home')->with('message', 'Post supprimer avec succès');
     }
-    
+
     /** 
      * Remove the specified resource from storage for ADMIN session.
      *
@@ -134,15 +128,15 @@ class PostController extends Controller
     }
 
     /** 
-    * Display a listing of the resource.
-    *
-    * @param  \app\http\Controller\Post  $post
-    * @return \Illuminate\Http\Response
-    */
+     * Display a listing of the resource.
+     *
+     * @param  \app\http\Controller\Post  $post
+     * @return \Illuminate\Http\Response
+     */
     public function show($faction_id)
     {
-        $posts = Post::where( 'faction_id', $faction_id)->latest()->paginate(10);
-        $posts->load('images','faction');
-        return view('faction', ['posts' => $posts] );
+        $posts = Post::where('faction_id', $faction_id)->latest()->paginate(10);
+        $posts->load('images', 'faction');
+        return view('faction', ['posts' => $posts]);
     }
 }

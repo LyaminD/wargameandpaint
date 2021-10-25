@@ -84,7 +84,7 @@ class CommentaireController extends Controller
         return redirect()->route('home')->with('message', 'Commentaire supprimer avec succès');
     }
 
-   /** 
+    /** 
      * Remove the specified resource from storage in ADMIN session.
      *
      * @param  \app\http\Controller\Commentaire  $commentaire
@@ -96,7 +96,7 @@ class CommentaireController extends Controller
         return redirect()->route('admincomment')->with('message', 'Commentaire supprimée avec succès');
     }
 
-     /** 
+    /** 
      * Display a listing of the resource.
      *
      * @param  \app\http\Controller\Commentaire  $commentaire
@@ -105,6 +105,6 @@ class CommentaireController extends Controller
     public function commentaire(Commentaire $commentaire)
     {
         $commentaire = Commentaire::all();
-        return view('admin.admincomment',compact('commentaire'));
+        return view('admin.admincomment', compact('commentaire'));
     }
 }

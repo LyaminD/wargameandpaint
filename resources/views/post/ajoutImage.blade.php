@@ -8,7 +8,7 @@
         <input type="hidden" name="post" value="true">
         <div class="col-md-6 my-2">
             <input type="file" name="image" class="form-control">
-        </div>     
+        </div>
         <div class="col-md-6 my-2">
             <button type="submit" class="btn btn-success">Upload ton image</button>
         </div>

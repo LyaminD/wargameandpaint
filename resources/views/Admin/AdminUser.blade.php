@@ -40,4 +40,4 @@
         </div>
     </div>
 </body>
-@endsection 
+@endsection

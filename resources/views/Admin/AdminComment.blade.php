@@ -16,7 +16,6 @@
                                     <th>Post_id</th>
                                     <th>User_id</th>
                                     <th>Contenu</th>
-                                    
                                 </tr>
                             </thead>
                             @foreach ($commentaire as $commentaire )
@@ -26,7 +25,6 @@
                                     <td>{{$commentaire ->post_id}}</td>
                                     <td>{{$commentaire ->user_id}}</td>
                                     <td>{{$commentaire ->content}}</td>
-                                    
                                     <th>
                                         <form action="{{route('destroyComment',$commentaire ->id)}}" method="post">
                                             @CSRF
@@ -44,4 +42,4 @@
         </div>
     </div>
 </body>
-@endsection 
+@endsection

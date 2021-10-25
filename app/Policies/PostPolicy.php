@@ -49,7 +49,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        if (Auth::user()){ 
+        if (Auth::user()) {
             return true;
         }
     }
@@ -77,5 +77,4 @@ class PostPolicy
     {
         return  $user->id === $post->user_id;
     }
-
 }

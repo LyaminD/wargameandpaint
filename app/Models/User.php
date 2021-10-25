@@ -63,8 +63,8 @@ class User extends Authenticatable
         return $this->hasMany(Commentaire::class);
     }
     public function isAdmin()
-    {   
-      return auth()->user()->role_id == 2;
+    {
+        return auth()->user()->role_id == 2;
     }
     public function followers()
     {

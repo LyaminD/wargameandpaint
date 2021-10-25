@@ -15,7 +15,6 @@
                                     <th class="text-center">id_post</th>
                                     <th>Titre</th>
                                     <th>Contenu</th>
-                                    
                                 </tr>
                             </thead>
                             @foreach ($post as $post)
@@ -24,7 +23,6 @@
                                     <td class="text-center">{{$post->id}}</td>
                                     <td>{{$post->titre}}</td>
                                     <td>{{$post->content}}</td>
-                                    
                                     <th>
                                         <form action="{{route('destroyPost',$post->id)}}" method="post">
                                             @CSRF
@@ -42,4 +40,4 @@
         </div>
     </div>
 </body>
-@endsection 
+@endsection

@@ -13,7 +13,7 @@ class Post extends Model
         'user_id',
         'titre',
         'faction_id'
-    ];  
+    ];
 
     use HasFactory;
     public function user()

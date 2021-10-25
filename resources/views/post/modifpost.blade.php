@@ -12,14 +12,14 @@
             @if(Session::get('image'))
             <input type="text" class="form-control" name="image" id="image" value="{{Session::get('image')}}">
             @else
-            <input type="text" name="image" id="image" class="form-control my-2"value="{{$post->image}}">
+            <input type="text" name="image" id="image" class="form-control my-2" value="{{$post->image}}">
             @endif
             <button>Modifier</button>
         </div>
-    </form>
-        <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
+</form>
+<form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
     @csrf
-         <div class="row">
+    <div class="row">
         <div class="col-md-6 my-2">
             <input type="file" name="image" class="form-control">
         </div>
@@ -27,5 +27,5 @@
             <button type="submit" class="btn btn-success">Upload</button>
         </div>
     </div>
-    </form>
+</form>
 @endsection

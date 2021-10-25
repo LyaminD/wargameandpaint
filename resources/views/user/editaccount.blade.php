@@ -14,34 +14,6 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="nom" class="col-md-4 col-form-label text-md-right">{{ __('Nom') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="nom" type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" value="{{$user->nom}}" required autocomplete="nom" autofocus>
-
-                                @error('nom')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="prenom" class="col-md-4 col-form-label text-md-right">{{ __('Prénom') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="prenom" type="text" class="form-control @error('prenom') is-invalid @enderror" name="prenom" value="{{$user->prenom}}" required autocomplete="prenom" autofocus>
-
-                                @error('prenom')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="pseudo" class="col-md-4 col-form-label text-md-right">{{ __('Pseudo') }}</label>
 
                             <div class="col-md-6">
@@ -108,16 +80,16 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                        <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Photo de profil') }}</label>
-                        <div class="col-md-6">
-                            @if(Session::get('image'))
-                            <input type="text" class="form-control" name="imageprofil" id="image" value="{{Session::get('image')}}">
-                            @else
-                            <input type="text" name="imageprofil" id="image" value="{{$user->imageprofil}}" class="form-control my-2" placeholder="Upload d'images ci-dessous">
-                            @endif
-                            <button class="button is-link btn-success" type="submit">Envoyer</button>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Photo de profil') }}</label>
+                            <div class="col-md-6">
+                                @if(Session::get('image'))
+                                <input type="text" class="form-control" name="imageprofil" id="image" value="{{Session::get('image')}}">
+                                @else
+                                <input type="text" name="imageprofil" id="image" value="{{$user->imageprofil}}" class="form-control my-2" placeholder="Upload d'images ci-dessous">
+                                @endif
+                                <button class="button is-link btn-success" type="submit">Envoyer</button>
+                            </div>
                         </div>
-                    </div>
                     </form>
                     <div class="">
                         <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">

@@ -28,7 +28,7 @@ class UserController extends Controller
         return view('user.profil', ['user' => $user]);
     }
 
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @param  \app\http\Controller\User  $user
@@ -36,10 +36,10 @@ class UserController extends Controller
      */
     public function profil(User $user, Post $posts)
     {
-        $posts= Post::where('user_id', $user->id)->latest()->paginate(1);
+        $posts = Post::where('user_id', $user->id)->latest()->paginate(10);
         $posts->load('images');
         $user->load('images');
-        return view('user.profil', compact('user','posts'));
+        return view('user.profil', compact('user', 'posts'));
     }
 
     /**
@@ -75,13 +75,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate( [
-            'pseudo' => ['required', 'string', 'max:255'],     
+        $request->validate([
+            'pseudo' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'jeux' => ['required', 'string', 'max:255'],
             'armées' => ['required', 'string', 'max:255'],
             'liens' => ['required', 'string', 'max:255'],
-            ]);
+        ]);
 
         $user = Auth::user();
         $user->update($request->all());
@@ -111,7 +111,7 @@ class UserController extends Controller
 
         if (Hash::check($newpassword, $oldpassword)) {
             $newpassword = $oldpassword;
-            return redirect()->route('editpassword')->withErrors(['password_error','ancien et nouveau mot de passe identique !']);
+            return redirect()->route('editpassword')->withErrors(['password_error', 'ancien et nouveau mot de passe identique !']);
         } else {
 
             $utilisateur->password = Hash::make(request('password'));
@@ -132,7 +132,7 @@ class UserController extends Controller
         return redirect()->route('adminuser')->with('message', 'Utilisateur supprimer avec succès');
     }
 
-     /**
+    /**
      * Remove the specified resource from storage.
      *
      *@param  \app\http\Controller\User  $user
@@ -175,5 +175,5 @@ class UserController extends Controller
     {
         $user = User::all();
         return view('admin.adminuser', compact('user'));
-    }  
+    }
 }

@@ -27,6 +27,6 @@ class HomeController extends Controller
         $posts = Post::latest()->paginate(10);
         $posts->load('images');
         $factions = Faction::all();
-        return view('home', ['posts' => $posts, 'factions' => $factions] );
+        return view('home', ['posts' => $posts, 'factions' => $factions]);
     }
 }

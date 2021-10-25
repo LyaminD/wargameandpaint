@@ -3,7 +3,7 @@
 @section('content')
 <!-- POSTER UN POST-->
 <div class="mt-2 mb-5 text-center postier">
-    <h2 class="text-dark my-5">Quoi de neuf ?</h2>
+    <h2 class="text-white my-5">Quoi de neuf ?</h2>
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col d-flex justify-content-center">
             <div class="card">
@@ -48,7 +48,7 @@
                 <h2 class="postcard__title blue text-center">{{ $post->titre}}</h2>
                 <div class="postcard__bar"></div>
                 <div class="postcard__preview-txt text-center">{{ $post->content}}</div>
-                <ul class="postcard__tagbox">
+                <ul class="postcard__tagbox justify-content-center">
                     @if (Auth::user()->can('update', $post))
                     <a href="{{route('posts.edit',$post)}}">
                         <input type="submit" value="Modifier le post" class="tag__item text-white">
@@ -61,14 +61,16 @@
                         <input type="submit" value="Supprimer" class="tag__item text-white">
                     </form>
                     @endif
-
                 </ul>
-                <form action="{{route('commentaires.store')}}" method="post">
+
+                <form action="{{route('commentaires.store')}}" method="post" class="">
                     @csrf
-                    <div class="commentaire d-flex text-center my-2">
-                        <h3 class="text-center">Commente !</h3>
-                        <div class="commentaire-input text-center"> <input type="text" name="content" class="form-control" placeholder="Commentaire">
-                            <input type="hidden" value="{{$post->id}}" name="post_id">
+
+                    <div class="commentaire text-center my-2 ">
+                        <div class="commentaire-input champcommentaire ">
+                            <h3>Commente !</h3>
+                            <input type="text" name="content" class="form-control" placeholder="Commentaire">
+                            <input type="hidden" value="{{$post->id}}" name="post_id" class="">
                             <input type="submit" value="envoyer" class="my-2 btn-success">
                         </div>
                     </div>
@@ -114,7 +116,6 @@
     <div class="col-md-3 offset-md-5 ">
         {{ $posts->links() }}
     </div>
-    
-    
+
 </section>
 @endsection

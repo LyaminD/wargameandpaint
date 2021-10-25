@@ -47,7 +47,7 @@ class CommentairePolicy
      */
     public function create(User $user)
     {
-        if (Auth::user()){ 
+        if (Auth::user()) {
             return true;
         }
     }

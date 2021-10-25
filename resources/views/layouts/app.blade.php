@@ -26,7 +26,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md menu navbar-light bg-white shadow-sm d-flex justify-content-between">
+        <nav class="navbar navbar-expand-md menu navbar-light bg-white shadow-sm d-flex">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('images/logo.png') }}" class="logo" alt="logo">
@@ -36,26 +36,11 @@
                 </button>
 
                 <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        @if (auth()->user() && auth()->user()->role_id == 2)
-                        <a class="nav-link" href="{{ route('admin.index') }}">Administration</a>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre></a>
-                            <div class="dropdown-menu dropdown-menu-right px-5 justify-content-center" aria-labelledby="navbarDropdown">
-                                <a href="{{ route('adminpost') }}" class="mx-3 text-reset">Gestion des posts</a>
-                                <a href="{{ route('admincomment') }}" class="mx-3 text-reset">Gestion des
-                                    commentaires</a>
-                                <a href="{{ route('adminuser') }}" class="mx-3 text-reset">Gestion des
-                                    utilisateurs</a>
-                            </div>
-                        </li>
-                        @endif
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav mx-auto">
                         @guest
                         @else
-                        <li class="nav-item text-dark align-item-center mr-3">
-                            <a href="{{ route('home') }}" class="nav-link mx-3 text-reset text-dark ">
+                        <li class="nav-item text-dark align-item-center">
+                            <a href="{{ route('home') }}" class="nav-link  text-reset text-dark ">
                                 Accueil
                             </a>
                         </li>
@@ -65,6 +50,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right px-5 mr-3" aria-labelledby="navbarDropdown">
+                                @if (auth()->user() && auth()->user()->role_id == 2)
+                                <a class="nav-link" href="{{ route('admin.index') }}">Administration</a>
+                                @endif
                                 <a href="{{ route('profil', $user = Auth::user()->id) }}" class="text-reset">
                                     Mon profil
                                 </a></br>
@@ -87,48 +75,49 @@
                         @endguest
                     </ul>
                 </div>
-
-                <?php $factions = GetFactions(); ?>
-                <div class="d-flex choixfaction d-flex justify-content-center">
-                    <FORM class="mx-3">
-                        <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle faction">
-                            <OPTION VALUE="#" SELECTED>Warhammer 40 000 </OPTION>
-                            @foreach ($factions as $faction)
-                            @if ($faction->jeu_id == '2')
-                            <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
-                            @endif
-                            @endforeach
-                            >
-                        </SELECT>
-                    </FORM>
-                    <FORM>
-                        <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle faction">
-                            <OPTION VALUE="#" SELECTED> Age Of Sigmar </OPTION>
-                            @foreach ($factions as $faction)
-                            @if ($faction->jeu_id == '1')
-                            <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
-                            @endif
-                            @endforeach
-                            >
-                        </SELECT>
-                    </FORM>
-                </div>
-                <!-- Search widget-->
-                <div class=" ms-4 container my-2 d-flex justify-content-end">
-                    <form method="get" action="{{ route('search') }}">
-                        <div class="d-flex justify-content-center">
-                            <div class="input-group">
-                                <input class="form-control" type="search" placeholder="Entrez la recherche" aria-describedby="button-search" name="search" />
-                                <button class="btn btn-primary" type="submit" id="button-search">Go!</button>
+                <div class="col navdroite d-md-inline-flex align-items-center">
+                    <?php $factions = GetFactions(); ?>
+                    <div class="d-flex choixfaction justify-content-center">
+                        <FORM class="mx-1">
+                            <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle faction">
+                                <OPTION VALUE="#" SELECTED>Warhammer 40 000 </OPTION>
+                                @foreach ($factions as $faction)
+                                @if ($faction->jeu_id == '2')
+                                <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
+                                @endif
+                                @endforeach
+                                >
+                            </SELECT>
+                        </FORM>
+                        <FORM>
+                            <SELECT onChange="window.location.replace('/posts/' + this.options[this.selectedIndex].value +'/show')" class="btn btn-secondary dropdown-toggle faction">
+                                <OPTION VALUE="#" SELECTED> Age Of Sigmar </OPTION>
+                                @foreach ($factions as $faction)
+                                @if ($faction->jeu_id == '1')
+                                <OPTION VALUE="{{ $faction->id }}">{{ $faction->nom }}</OPTION>
+                                @endif
+                                @endforeach
+                                >
+                            </SELECT>
+                        </FORM>
+                    </div>
+                    <!-- Search widget-->
+                    <div class=" ms-4 container my-2 d-flex justify-content-end">
+                        <form method="get" action="{{ route('search') }}">
+                            <div class="d-flex justify-content-center">
+                                <div class="input-group">
+                                    <input class="form-control" type="search" placeholder="Entrez la recherche" aria-describedby="button-search" name="search" />
+                                    <button class="btn btn-primary" type="submit" id="button-search">Go!</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
 
         @if (Auth::user())
-        <div class="col-md-2 d-flex flex-column justify-content-center mx-auto mt-3" id="friendsList">
+        <div class="container d-flex flex-column justify-content-center mx-auto mt-3" id="friendsList">
             @include ('follows-list')
         </div>
         @endif

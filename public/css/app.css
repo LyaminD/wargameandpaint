@@ -10024,10 +10024,6 @@ footer {
   bottom: 0;
 }
 
-menu {
-  flex-direction: row;
-}
-
 h1 {
   text-align: center;
 }
@@ -10038,8 +10034,8 @@ h1 {
 }
 
 .logo {
-  width: 70%;
-  height: 70%;
+  width: 50%;
+  height: auto;
 }
 
 p {
@@ -10402,8 +10398,42 @@ hr {
 .commentaire {
   flex-direction: column;
   justify-content: center;
+  display: flex;
 }
 
 .post {
   opacity: 0.9;
+}
+
+.imagepost {
+  height: 50%;
+  width: 50%;
+}
+
+.champcommentaire {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #777;
+}
+
+.navdroite {
+  flex-basis: auto;
 }
