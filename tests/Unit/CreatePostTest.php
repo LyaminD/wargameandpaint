@@ -16,7 +16,7 @@ class PostTest extends TestCase
      *
      * @return void
      */
-    public function testAddPost()
+    public function testCreatePost()
     {
         DB::table('jeux')->insert([
             'nom'=>'Warhammer 40 000',

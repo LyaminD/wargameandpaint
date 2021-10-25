@@ -15,28 +15,26 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function testAddUser()
+    public function testCreateUser()
     {
-        DB::table('roles')->insert([
-            'role'=>'user',
-        ]);
-        
-    
-
         $this->assertEquals(0, User::count());
+
+        DB::table('roles')->insert([
+            'role' => 'user',
+        ]);
 
         $data = [
             'pseudo' => 'UtilisateurTest',
-            'email' => 'testmail@mailtest.fr',
-            'password' => 'Azerty123!',
+            'email' => 'test@mail.fr',
+            'password' => 'Azerty123@',
+            'password_confirmation' => 'Azerty123@',
         ];
 
-        $this->json('POST', 'users/create', $data);
+        $this->json('POST', 'register', $data);
         $this->assertEquals(1, User::count());
         $user = User::first();
 
         $this->assertEquals($data['pseudo'], $user->pseudo);
         $this->assertEquals($data['email'], $user->email);
-        $this->assertEquals($data['password'], $user->password);
     }
 }
